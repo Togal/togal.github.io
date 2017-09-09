@@ -104,7 +104,7 @@
 <meta property="og:site_name" content="Togal">
 <meta property="og:description" content="pyenv Python版本安装、管理 note1: virtualenv通过创建独立Python开发环境的工具, 来解决依赖、版本以及间接权限note2: Virtaulenvwrapper是virtualenv的扩展包，用于更方便管理虚拟环境  1234$ yum install readline readline-devel readline-static -y $ yum install">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-09-09T15:43:21.460Z">
+<meta property="og:updated_time" content="2017-09-09T15:46:42.478Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Togal">
 <meta name="twitter:description" content="pyenv Python版本安装、管理 note1: virtualenv通过创建独立Python开发环境的工具, 来解决依赖、版本以及间接权限note2: Virtaulenvwrapper是virtualenv的扩展包，用于更方便管理虚拟环境  1234$ yum install readline readline-devel readline-static -y $ yum install">
@@ -363,16 +363,17 @@
 </blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ yum install readline readline-devel readline-static -y </div><div class="line">$ yum install openssl openssl-devel openssl-static -y </div><div class="line">$ yum install sqlite-devel -y</div><div class="line">$ yum install bzip2-devel bzip2-libs -y</div></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ yum install patch vim git -y</div><div class="line">$ yum -y install epel-release  # 安装 epel 扩展源</div><div class="line">$ yum  install python-devel</div><div class="line">$ yum -y install python-pip</div><div class="line">$ yum clean all # 清除 cache</div></pre></td></tr></table></figure>
-<p><code>语句合并：</code><br><figure class="highlight plain"><figcaption><span>install readline readline-devel readline-static openssl openssl-devel openssl-static sqlite-devel bzip2-devel bzip2-libs epel-release python-devel python-pip patch vim git -y```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure></p>
-<p>$ pip install virtualenvwrapper<br>$ find / -name virtualenvwrapper.sh<br>$ vim ~/.bashrc<br>export WORKON_HOME=$HOME/.virtualenvs<br>source /usr/local/bin/virtualenvwrapper.sh<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure></p>
+<p><code>语句合并：</code></p>
+<figure class="highlight plain"><figcaption><span>install readline readline-devel readline-static openssl openssl-devel openssl-static sqlite-devel bzip2-devel bzip2-libs epel-release python-devel python-pip patch vim git -y```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<p>\$ pip install virtualenvwrapper<br>\$ find / -name virtualenvwrapper.sh<br>\$ vim ~/.bashrc<br>export WORKON_HOME=$HOME/.virtualenvs<br>source /usr/local/bin/virtualenvwrapper.sh<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure></p>
 <p>git clone git://github.com/yyuu/pyenv.git ~/.pyenv<br>echo ‘export PYENV_ROOT=”$HOME/.pyenv”‘&gt;&gt; ~/.bashrc # 指明环境变量<br>echo ‘export PATH=”$PYENV_ROOT/bin:$PATH”‘&gt;&gt; ~/.bashrc<br>echo ‘eval “$(pyenv init -)”‘ &gt;&gt; ~/.bashrc  # 开启shims and autocompletion<br>exec $SHELL -l  # 重新启动shell让其生效<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure></p>
-<p>$ pyenv install –list<br>$ pyenv install 3.5.2 -v<br>$ pyenv rehash<br>$ pyenv versions</p>
+<p>\$ pyenv install –list<br>\$ pyenv install 3.5.2 -v<br>\$ pyenv rehash<br>\$ pyenv versions</p>
 <ul>
-<li>system (set by /Users/ce/workspace/.python-version)<br>3.5.2<br>$ pyenv global 3.5.2<br>$ pyenv versions<br>system</li>
+<li>system (set by /Users/ce/workspace/.python-version)<br>3.5.2<br>\$ pyenv global 3.5.2<br>\$ pyenv versions<br>system</li>
 <li>3.5.2 (set by /Users/ce/workspace/.python-version)<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
 </li>
 </ul>
-<p>$ workon  #查看虚拟环境<br>$ mkvirtualenv env #创建虚拟环境<br>$ rmvirtualenv env #删除虚拟环境<br>```</p>
+<p>\$ workon  #查看虚拟环境<br>\$ mkvirtualenv env #创建虚拟环境<br>\$ rmvirtualenv env #删除虚拟环境<br>```</p>
 <blockquote>
 <p>进入虚拟环境<br>\$ workon vir-dir<br>或者<br>\$ cd vir-dir ;source ./bin/activate<br>退出<br>$ deactivate</p>
 </blockquote>
