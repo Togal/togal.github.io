@@ -97,16 +97,17 @@
 
 
 
-<meta name="description" content="well done">
-<meta property="og:type" content="website">
+<meta name="description" content="pyenv Python版本安装、管理 note1: virtualenv通过创建独立Python开发环境的工具, 来解决依赖、版本以及间接权限note2: Virtaulenvwrapper是virtualenv的扩展包，用于更方便管理虚拟环境  1234$ yum install readline readline-devel readline-static -y $ yum install">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Togal">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:url" content="http://yoursite.com/2017/09/09/pyenv Python版本安装、管理/index.html">
 <meta property="og:site_name" content="Togal">
-<meta property="og:description" content="well done">
+<meta property="og:description" content="pyenv Python版本安装、管理 note1: virtualenv通过创建独立Python开发环境的工具, 来解决依赖、版本以及间接权限note2: Virtaulenvwrapper是virtualenv的扩展包，用于更方便管理虚拟环境  1234$ yum install readline readline-devel readline-static -y $ yum install">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-09-09T15:34:16.372Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Togal">
-<meta name="twitter:description" content="well done">
+<meta name="twitter:description" content="pyenv Python版本安装、管理 note1: virtualenv通过创建独立Python开发环境的工具, 来解决依赖、版本以及间接权限note2: Virtaulenvwrapper是virtualenv的扩展包，用于更方便管理虚拟环境  1234$ yum install readline readline-devel readline-static -y $ yum install">
 
 
 
@@ -136,13 +137,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/09/09/pyenv Python版本安装、管理/"/>
 
 
 
 
 
-  <title>Togal</title>
+  <title> | Togal</title>
   
 
 
@@ -161,8 +162,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -265,9 +265,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -297,9 +297,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/09/09/pyenv Python版本安装、管理/" itemprop="url">未命名</a></h1>
+          <h1 class="post-title" itemprop="name headline"></h1>
         
 
         <div class="post-meta">
@@ -360,21 +358,19 @@
       
 
       
-        
-          
-          pyenv Python版本安装、管理
-note1: virtualenv通过创建独立Python开发环境的工具, 来解决依赖、版本以及间接权限note2: Virtaulenvwrapper是virtualenv的扩展包，用于更方便管理虚拟环境
+        <h3 id="pyenv-Python版本安装、管理"><a href="#pyenv-Python版本安装、管理" class="headerlink" title="pyenv Python版本安装、管理"></a>pyenv Python版本安装、管理</h3><blockquote>
+<p><strong><em>note1:</em></strong> virtualenv通过创建独立Python开发环境的工具, 来解决依赖、版本以及间接权限<br><strong><em>note2:</em></strong> Virtaulenvwrapper是virtualenv的扩展包，用于更方便管理虚拟环境</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ yum install readline readline-devel readline-static -y </div><div class="line">$ yum install openssl openssl-devel openssl-static -y </div><div class="line">$ yum install sqlite-devel -y</div><div class="line">$ yum install bzip2-devel bzip2-libs -y</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ yum install patch vim git -y</div><div class="line">$ yum -y install epel-release  # 安装 epel 扩展源</div><div class="line">$ yum  install python-devel</div><div class="line">$ yum -y install python-pip</div><div class="line">$ yum clean all # 清除 cache</div></pre></td></tr></table></figure>
+<p><code>语句合并：</code><br><figure class="highlight plain"><figcaption><span>install readline readline-devel readline-static openssl openssl-devel openssl-static sqlite-devel bzip2-devel bzip2-libs epel-release python-devel python-pip patch vim git -y```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure></p>
+<p>$ pip install virtualenvwrapper<br>$ find / -name virtualenvwrapper.sh<br>$ vim ~/.bashrc<br>export WORKON_HOME=$HOME/.virtualenvs<br>source /usr/local/bin/virtualenvwrapper.sh<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">```</div><div class="line">git clone git://github.com/yyuu/pyenv.git ~/.pyenv</div><div class="line">echo &apos;export PYENV_ROOT=&quot;$HOME/.pyenv&quot;&apos;&gt;&gt; ~/.bashrc # 指明环境变量</div><div class="line">echo &apos;export PATH=&quot;$PYENV_ROOT/bin:$PATH&quot;&apos;&gt;&gt; ~/.bashrc</div><div class="line">echo &apos;eval &quot;$(pyenv init -)&quot;&apos; &gt;&gt; ~/.bashrc  # 开启shims and autocompletion</div><div class="line">exec $SHELL -l  # 重新启动shell让其生效</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">$ pyenv install --list</div><div class="line">$ pyenv install 3.5.2 -v</div><div class="line">$ pyenv rehash</div><div class="line">$ pyenv versions</div><div class="line">* system (set by /Users/ce/workspace/.python-version)</div><div class="line">3.5.2</div><div class="line">$ pyenv global 3.5.2</div><div class="line">$ pyenv versions</div><div class="line">system</div><div class="line">* 3.5.2 (set by /Users/ce/workspace/.python-version)</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ workon  #查看虚拟环境</div><div class="line">$ mkvirtualenv env #创建虚拟环境</div><div class="line">$ rmvirtualenv env #删除虚拟环境</div></pre></td></tr></table></figure>
+<blockquote>
+<p>进入虚拟环境<br>\$ workon vir-dir<br>或者<br>\$ cd vir-dir ;source ./bin/activate<br>退出<br>$ deactivate</p>
+</blockquote>
 
-1234$ yum install readlin
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/09/09/pyenv Python版本安装、管理/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
       
     </div>
     
@@ -384,6 +380,35 @@ note1: virtualenv通过创建独立Python开发环境的工具, 来解决依赖�
     
 
     
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>Donate comment here</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="Togal WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Togal Alipay"/>
+        <p>Alipay</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
 
     
 
@@ -391,149 +416,28 @@ note1: virtualenv通过创建独立Python开发环境的工具, 来解决依赖�
       
 
       
-
-      
-
       
       
-        <div class="post-eof"></div>
+
       
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/27/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Togal">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/favicon.ico">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Togal">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/27/hello-world/" itemprop="url">Hello World</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-27T13:14:38+08:00">
-                2017-08-27
-              </time>
+              <a href="/2017/08/27/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
             
+          </div>
 
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2017/08/27/hello-world/" class="leancloud_visitors" data-flag-title="Hello World">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-          Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in 
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/08/27/hello-world/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -543,10 +447,11 @@ note1: virtualenv通过创建独立Python开发环境的工具, 来解决依赖�
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -554,6 +459,12 @@ note1: virtualenv通过创建独立Python开发环境的工具, 来解决依赖�
 
 
           
+  <div class="comments" id="comments">
+    
+      <div id="uyan_frame"></div>
+    
+  </div>
+
 
         </div>
         
@@ -574,8 +485,17 @@ note1: virtualenv通过创建独立Python开发环境的工具, 来解决依赖�
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/favicon.ico"
@@ -655,6 +575,22 @@ note1: virtualenv通过创建独立Python开发环境的工具, 来解决依赖�
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#pyenv-Python版本安装、管理"><span class="nav-number">1.</span> <span class="nav-text">pyenv Python版本安装、管理</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -775,6 +711,10 @@ note1: virtualenv通过创建独立Python开发环境的工具, 来解决依赖�
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
 
   
 
@@ -800,6 +740,10 @@ note1: virtualenv通过创建独立Python开发环境的工具, 来解决依赖�
   
     
 
+    
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2142597"></script>
+      <!-- UY END -->
     
   
 
