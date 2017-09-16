@@ -8,7 +8,7 @@
     <atom:link href="/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>well done</description>
-    <pubDate>Sat, 16 Sep 2017 08:04:04 GMT</pubDate>
+    <pubDate>Sat, 16 Sep 2017 08:14:04 GMT</pubDate>
     <generator>http://hexo.io/</generator>
     
     <item>
@@ -18,41 +18,36 @@
       <pubDate>Sat, 16 Sep 2017 07:56:35 GMT</pubDate>
       <description>
       
-        &lt;p&gt;&lt;code&gt;进入目录：&lt;/code&gt;&lt;/p&gt;
-&lt;blockquote&gt;
+        &lt;h4 id=&quot;进入目录：&quot;&gt;&lt;a href=&quot;#进入目录：&quot; class=&quot;headerlink&quot; title=&quot;进入目录：&quot;&gt;&lt;/a&gt;进入目录：&lt;/h4&gt;&lt;blockquote&gt;
 &lt;p&gt;cd E:\hexo-blog\blog&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;&lt;code&gt;清理缓存&lt;/code&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;hexo clean&lt;/p&gt;
-&lt;/b
+&lt;p&gt;###
       
       </description>
       
-      <content:encoded><![CDATA[<p><code>进入目录：</code></p>
-<blockquote>
+      <content:encoded><![CDATA[<h4 id="进入目录："><a href="#进入目录：" class="headerlink" title="进入目录："></a>进入目录：</h4><blockquote>
 <p>cd E:\hexo-blog\blog</p>
 </blockquote>
-<p><code>清理缓存</code></p>
+<p>####清理缓存</p>
 <blockquote>
 <p>hexo clean</p>
 </blockquote>
-<p><code>生成文件</code></p>
-<blockquote>
+<h4 id="生成文件"><a href="#生成文件" class="headerlink" title="生成文件"></a>生成文件</h4><blockquote>
 <p>hexo g </p>
 </blockquote>
-<p>或者</p>
-<blockquote>
+<h4 id="或者"><a href="#或者" class="headerlink" title="或者"></a><em>或者</em></h4><blockquote>
 <p>hexo generate</p>
 </blockquote>
-<p><code>部署</code></p>
-<p><code>hexo d</code> </p>
-<p>或者</p>
-<blockquote>
+<h4 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h4><blockquote>
+<p>hexo d </p>
+</blockquote>
+<h4 id="或者-1"><a href="#或者-1" class="headerlink" title="或者"></a><em>或者</em></h4><blockquote>
 <p>hexo deploy</p>
 </blockquote>
+<h4 id="访问站点"><a href="#访问站点" class="headerlink" title="访问站点"></a>访问站点</h4><p>[togal.github.io][<a href="https://togal.github.io" target="_blank" rel="external">https://togal.github.io</a>]</p>
+<p>[blog.togal.org][<a href="http://blog.togal.org" target="_blank" rel="external">http://blog.togal.org</a>]</p>
 <hr>
-<p>(参考文档)[<a href="http://www.jianshu.com/p/5973c05d7100" target="_blank" rel="external">http://www.jianshu.com/p/5973c05d7100</a>]<br>(第三方搜索工具)[www.algolia.com]<br>(第三方页面访问统计)[<a href="https://leancloud.cn/" target="_blank" rel="external">https://leancloud.cn/</a>]<br>(Next官方主题说明文档)[<a href="http://theme-next.iissnan.com/" target="_blank" rel="external">http://theme-next.iissnan.com/</a>]</p>
+<p>[参考文档:<a href="http://www.jianshu.com/p/5973c05d7100][http://www.jianshu.com/p/5973c05d7100" target="_blank" rel="external">http://www.jianshu.com/p/5973c05d7100][http://www.jianshu.com/p/5973c05d7100</a>]<br>[第三方搜索工具:www.algolia.com][www.algolia.com]<br>[第三方页面访问统计：<a href="https://leancloud.cn/][https://leancloud.cn/" target="_blank" rel="external">https://leancloud.cn/][https://leancloud.cn/</a>]<br>[Next官方主题说明文档：<a href="http://theme-next.iissnan.com/][http://theme-next.iissnan.com/" target="_blank" rel="external">http://theme-next.iissnan.com/][http://theme-next.iissnan.com/</a>]</p>
 ]]></content:encoded>
       
       <comments>http://yoursite.com/2017/09/16/hexo%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/#disqus_thread</comments>
