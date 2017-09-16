@@ -8,23 +8,21 @@
     <atom:link href="/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>well done</description>
-    <pubDate>Sat, 16 Sep 2017 07:48:50 GMT</pubDate>
+    <pubDate>Sat, 16 Sep 2017 07:51:20 GMT</pubDate>
     <generator>http://hexo.io/</generator>
     
     <item>
-      <title></title>
+      <title>pyenv Python版本安装、管理</title>
       <link>http://yoursite.com/2017/09/09/pyenv-Python/</link>
       <guid>http://yoursite.com/2017/09/09/pyenv-Python/</guid>
       <pubDate>Sat, 09 Sep 2017 15:34:30 GMT</pubDate>
       <description>
       
-        &lt;p&gt;title: pyenv Python版本安装、管理&lt;/p&gt;
-&lt;h3 id=&quot;pyenv-Python版本安装、管理&quot;&gt;&lt;a href=&quot;#pyenv-Python版本安装、管理&quot; class=&quot;headerlink&quot; title=&quot;pyenv Python版本安装、管理&quot;
+        &lt;h3 id=&quot;pyenv-Python版本安装、管理&quot;&gt;&lt;a href=&quot;#pyenv-Python版本安装、管理&quot; class=&quot;headerlink&quot; title=&quot;pyenv Python版本安装、管理&quot;&gt;&lt;/a&gt;pyenv Python版本安装、管理&lt;/h3&gt;&lt;bloc
       
       </description>
       
-      <content:encoded><![CDATA[<p>title: pyenv Python版本安装、管理</p>
-<h3 id="pyenv-Python版本安装、管理"><a href="#pyenv-Python版本安装、管理" class="headerlink" title="pyenv Python版本安装、管理"></a>pyenv Python版本安装、管理</h3><blockquote>
+      <content:encoded><![CDATA[<h3 id="pyenv-Python版本安装、管理"><a href="#pyenv-Python版本安装、管理" class="headerlink" title="pyenv Python版本安装、管理"></a>pyenv Python版本安装、管理</h3><blockquote>
 <p><strong><em>note1:</em></strong> virtualenv通过创建独立Python开发环境的工具, 来解决依赖、版本以及间接权限<br><strong><em>note2:</em></strong> Virtaulenvwrapper是virtualenv的扩展包，用于更方便管理虚拟环境</p>
 </blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ yum install readline readline-devel readline-static -y </div><div class="line">$ yum install openssl openssl-devel openssl-static -y </div><div class="line">$ yum install sqlite-devel -y</div><div class="line">$ yum install bzip2-devel bzip2-libs -y</div></pre></td></tr></table></figure>
