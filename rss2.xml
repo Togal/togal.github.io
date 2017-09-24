@@ -8,14 +8,14 @@
     <atom:link href="/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>well done</description>
-    <pubDate>Sun, 24 Sep 2017 09:33:59 GMT</pubDate>
+    <pubDate>Sun, 24 Sep 2017 09:39:18 GMT</pubDate>
     <generator>http://hexo.io/</generator>
     
     <item>
-      <title></title>
-      <link>http://yoursite.com/2017/09/23/awk-example/</link>
-      <guid>http://yoursite.com/2017/09/23/awk-example/</guid>
-      <pubDate>Sat, 23 Sep 2017 08:04:38 GMT</pubDate>
+      <title>awk</title>
+      <link>http://yoursite.com/2017/09/24/awk/</link>
+      <guid>http://yoursite.com/2017/09/24/awk/</guid>
+      <pubDate>Sun, 24 Sep 2017 09:38:47 GMT</pubDate>
       <description>
       
         &lt;h3 id=&quot;awk-test内容&quot;&gt;&lt;a href=&quot;#awk-test内容&quot; class=&quot;headerlink&quot; title=&quot;awk-test内容&quot;&gt;&lt;/a&gt;awk-test内容&lt;/h3&gt;&lt;p&gt;Beth 4.00 0&lt;br&gt;Dan 3.75 0&lt;br&gt;Kathy 4.0
@@ -54,7 +54,7 @@
 <h3 id="28-打印最后一行的最后一个字段"><a href="#28-打印最后一行的最后一个字段" class="headerlink" title="28.打印最后一行的最后一个字段"></a>28.打印最后一行的最后一个字段</h3><figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&#123; field = <span class="variable">$NF</span> &#125;</div><div class="line"><span class="keyword">END</span> &#123; print field &#125;</div></pre></td></tr></table></figure>
 ]]></content:encoded>
       
-      <comments>http://yoursite.com/2017/09/23/awk-example/#disqus_thread</comments>
+      <comments>http://yoursite.com/2017/09/24/awk/#disqus_thread</comments>
     </item>
     
     <item>
