@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+  <link rel="alternate" href="/rss2.xml" title="Togal" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="awk-test内容Beth 4.00 0Dan 3.75 0Kathy 4.00 10Mark 5.00 20Mary 5.50 22Susie 4.25 18 1.打印字段数多于 4 个的输入行1NF &amp;gt; 4 2.打印最后一个字段值大于 4 的输入行1$NF &amp;gt; 4 3.打印所有输入行的字段数的总和nf = nf + NF &amp;#125; END &amp;#123; print nf &amp;#">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Togal">
+<meta property="og:url" content="http://yoursite.com/2017/09/23/awk-example/index.html">
+<meta property="og:site_name" content="Togal">
+<meta property="og:description" content="awk-test内容Beth 4.00 0Dan 3.75 0Kathy 4.00 10Mark 5.00 20Mary 5.50 22Susie 4.25 18 1.打印字段数多于 4 个的输入行1NF &amp;gt; 4 2.打印最后一个字段值大于 4 的输入行1$NF &amp;gt; 4 3.打印所有输入行的字段数的总和nf = nf + NF &amp;#125; END &amp;#123; print nf &amp;#">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-09-24T09:11:38.285Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Togal">
+<meta name="twitter:description" content="awk-test内容Beth 4.00 0Dan 3.75 0Kathy 4.00 10Mark 5.00 20Mary 5.50 22Susie 4.25 18 1.打印字段数多于 4 个的输入行1NF &amp;gt; 4 2.打印最后一个字段值大于 4 的输入行1$NF &amp;gt; 4 3.打印所有输入行的字段数的总和nf = nf + NF &amp;#125; END &amp;#123; print nf &amp;#">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"hide","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/09/23/awk-example/"/>
+
+
+
+
+
+  <title> | Togal</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Togal</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/23/awk-example/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Togal">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/favicon.ico">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Togal">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline"></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-23T16:04:38+08:00">
+                2017-09-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/09/23/awk-example/" class="leancloud_visitors" data-flag-title="">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="awk-test内容"><a href="#awk-test内容" class="headerlink" title="awk-test内容"></a>awk-test内容</h3><p>Beth 4.00 0<br>Dan 3.75 0<br>Kathy 4.00 10<br>Mark 5.00 20<br>Mary 5.50 22<br>Susie 4.25 18</p>
+<h3 id="1-打印字段数多于-4-个的输入行"><a href="#1-打印字段数多于-4-个的输入行" class="headerlink" title="1.打印字段数多于 4 个的输入行"></a>1.打印字段数多于 4 个的输入行</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">NF &gt; 4</div></pre></td></tr></table></figure>
+<h3 id="2-打印最后一个字段值大于-4-的输入行"><a href="#2-打印最后一个字段值大于-4-的输入行" class="headerlink" title="2.打印最后一个字段值大于 4 的输入行"></a>2.打印最后一个字段值大于 4 的输入行</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$NF &gt; 4</div></pre></td></tr></table></figure>
+<h3 id="3-打印所有输入行的字段数的总和"><a href="#3-打印所有输入行的字段数的总和" class="headerlink" title="3.打印所有输入行的字段数的总和"></a>3.打印所有输入行的字段数的总和</h3><figure class="highlight plain"><figcaption><span>nf = nf + NF &#125; END &#123; print nf &#125;</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<h3 id="4-打印包含-Beth-的行的数量"><a href="#4-打印包含-Beth-的行的数量" class="headerlink" title="4.打印包含 Beth 的行的数量"></a>4.打印包含 Beth 的行的数量</h3><figure class="highlight plain"><figcaption><span>&#123; nlines = nlines + 1 &#125; END &#123; print nlines &#125; ```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">### 5.打印具有最大值的第一个字段, 以及包含它的行 (假设 $1 总是 正的) 18</div><div class="line"></div><div class="line">``` $1 &gt; max &#123; max = $1; maxline = $0 &#125; END &#123; print max, maxline &#125;</div></pre></td></tr></table></figure>
+<h3 id="6-打印至少包含一个字段的行"><a href="#6-打印至少包含一个字段的行" class="headerlink" title="6.打印至少包含一个字段的行"></a>6.打印至少包含一个字段的行</h3><figure class="highlight plain"><figcaption><span>> 0```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">### 7.打印长度超过 80 个字符的行</div><div class="line"></div><div class="line">``` length($0) &gt; 80</div></pre></td></tr></table></figure>
+<h3 id="8-在每一行的前面加上它的字段数"><a href="#8-在每一行的前面加上它的字段数" class="headerlink" title="8.在每一行的前面加上它的字段数"></a>8.在每一行的前面加上它的字段数</h3><figure class="highlight plain"><figcaption><span>print NF, $0 &#125;```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">### 9.打印每一行的第 1 与第 2 个字段, 但顺序相反</div><div class="line"></div><div class="line">```&#123; print $2, $1 &#125;</div></pre></td></tr></table></figure>
+<h3 id="10-交换每一行的第-1-与第-2-个字段-并打印该行"><a href="#10-交换每一行的第-1-与第-2-个字段-并打印该行" class="headerlink" title="10.交换每一行的第 1 与第 2 个字段, 并打印该行"></a>10.交换每一行的第 1 与第 2 个字段, 并打印该行</h3><figure class="highlight plain"><figcaption><span>temp = $1; $1 = $2; $2 = temp; print &#125;```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">### 11.将每一行的第一个字段用行号代替</div><div class="line"></div><div class="line">```&#123; $1 = NR; print &#125;</div></pre></td></tr></table></figure>
+<h3 id="12-打印删除了第-2-个字段后的行"><a href="#12-打印删除了第-2-个字段后的行" class="headerlink" title="12.打印删除了第 2 个字段后的行"></a>12.打印删除了第 2 个字段后的行</h3><figure class="highlight plain"><figcaption><span>$2 = ""; print &#125;```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">### 13.将每一行的字段按逆序打印</div><div class="line"></div><div class="line">```&#123; for (i = NF; i &gt; 0; i = i - 1) printf(&quot;%s &quot;, $i) printf(&quot;\n&quot;)&#125;</div></pre></td></tr></table></figure>
+<h3 id="14-打印每一行的所有字段值之和"><a href="#14-打印每一行的所有字段值之和" class="headerlink" title="14.打印每一行的所有字段值之和"></a>14.打印每一行的所有字段值之和</h3><figure class="highlight plain"><figcaption><span>sum = 0; for (i = 1; i <= nf;="" i="i" +="" 1)="" sum="sum" $i;="" print="" &#125;```<="" span=""></=></span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">### 15.将所有行的所有字段值累加起来</div><div class="line"></div><div class="line">```&#123; for (i = 1; i &lt;= NF; i = i + 1) sum = sum + $i &#125; END &#123; print sum &#125;</div></pre></td></tr></table></figure>
+<h3 id="16-将每一行的每一个字段用它的绝对值替换"><a href="#16-将每一行的每一个字段用它的绝对值替换" class="headerlink" title="16.将每一行的每一个字段用它的绝对值替换"></a>16.将每一行的每一个字段用它的绝对值替换</h3><figure class="highlight plain"><figcaption><span>for (i = 1; i <= nf;="" i="i" +="" 1)="" if="" ($i="" <="" 0)="" $i="-$i" print="" &#125;```<="" span=""></=></span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">### 17.判断是否有重复</div><div class="line"></div><div class="line">``` awk &apos;++a[$1]&gt;1&#123;print &quot;duplicate&quot;;exit&#125;&apos;</div></pre></td></tr></table></figure>
+<h3 id="18-拿出相同的字段"><a href="#18-拿出相同的字段" class="headerlink" title="18.拿出相同的字段"></a>18.拿出相同的字段</h3><figure class="highlight awk"><figcaption><span>'&#123;a[$1]++&#125;END&#123;for(i in a)if(a[i]>1)print i&#125;'   ```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">### 19.搜索每小时工资最高的雇员</span></div><div class="line"></div><div class="line">`` <span class="variable">$2</span> &gt; maxrate &#123; maxrate = <span class="variable">$2</span>; maxemp = <span class="variable">$1</span> &#125; <span class="keyword">END</span> &#123; print <span class="string">"highest hourly rate:"</span>, maxrate, <span class="string">"for"</span>, maxemp &#125; ``</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">### 20.利用 NR 来计算平均报酬</span></div><div class="line"></div><div class="line">``` &#123; pay = pay + <span class="variable">$2</span> * <span class="variable">$3</span> &#125; <span class="keyword">END</span> &#123; print NR, <span class="string">"employees"</span> print <span class="string">"total pay is"</span>, pay print <span class="string">"average pay is"</span>, pay <span class="regexp">/ NR&#125;</span></div></pre></td></tr></table></figure>
+<h3 id="21-字符串拼接，输出所有人名"><a href="#21-字符串拼接，输出所有人名" class="headerlink" title="21.字符串拼接，输出所有人名"></a>21.字符串拼接，输出所有人名</h3><figure class="highlight plain"><figcaption><span>names = names $1 " " &#125; END &#123; print names &#125; ```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">### 22.虽然在 END 动作里, NR 的值被保留了下来, 但是 $0 却不会,打印最后一行</div><div class="line"></div><div class="line">``` awk &apos;&#123; last = $0 &#125; END &#123; print last &#125;&apos;</div></pre></td></tr></table></figure>
+<h3 id="23-使用-length-NF-与-NR-计算行-单词与字符的数量-为方便起见-我们将每个字段都当成一个单词"><a href="#23-使用-length-NF-与-NR-计算行-单词与字符的数量-为方便起见-我们将每个字段都当成一个单词" class="headerlink" title="23.使用 length, NF 与 NR 计算行, 单词与字符的数量, 为方便起见, 我们将每个字段都当成一个单词"></a>23.使用 length, NF 与 NR 计算行, 单词与字符的数量, 为方便起见, 我们将每个字段都当成一个单词</h3><figure class="highlight awk"><figcaption><span>'&#123; nc = nc + length($0) + 1; nw = nw + NF &#125; END &#123; print NR, "lines,", nw, "words,", nc, "characters" &#125;' ```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">### 24.计算每小时工资多于 $6.00 的雇员的总报酬与平均报酬. 在计算平均数时, 它用到了if 语句, 避免用 0 作除数</span></div><div class="line"></div><div class="line">``` awk <span class="string">'$2 &gt; 6 &#123; n = n + 1; pay = pay + $2 * $3 &#125; END &#123; if (n &gt; 0) print n, "employees, total pay is", pay,"average pay is", pay/n; else print "no employees are paid more than $6/hour"&#125;'</span></div></pre></td></tr></table></figure>
+<h3 id="25-输入行的总行数"><a href="#25-输入行的总行数" class="headerlink" title="25.输入行的总行数"></a>25.输入行的总行数</h3><figure class="highlight plain"><figcaption><span>&#123; print NR &#125;```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">###26.打印第 10 行</div><div class="line"></div><div class="line">```NR == 10</div></pre></td></tr></table></figure>
+<h3 id="27-打印每一个输入行的最后一个字段"><a href="#27-打印每一个输入行的最后一个字段" class="headerlink" title="27.打印每一个输入行的最后一个字段"></a>27.打印每一个输入行的最后一个字段</h3><p><code>{ print $NF }</code></p>
+<h3 id="28-打印最后一行的最后一个字段"><a href="#28-打印最后一行的最后一个字段" class="headerlink" title="28.打印最后一行的最后一个字段"></a>28.打印最后一行的最后一个字段</h3><p><code>{ field = $NF }
+END { print field }</code> </p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>Donate comment here</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="Togal WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Togal Alipay"/>
+        <p>Alipay</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/09/16/hexo基本命令/" rel="next" title="hexo基本命令">
+                <i class="fa fa-chevron-left"></i> hexo基本命令
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="uyan_frame"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/favicon.ico"
+               alt="Togal" />
+          <p class="site-author-name" itemprop="name">Togal</p>
+           
+              <p class="site-description motion-element" itemprop="description">well done</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives/">
+            
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/rss2.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Togal" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      Github
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://g.togal.org" title="Google" target="_blank">Google</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#awk-test内容"><span class="nav-number">1.</span> <span class="nav-text">awk-test内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-打印字段数多于-4-个的输入行"><span class="nav-number">2.</span> <span class="nav-text">1.打印字段数多于 4 个的输入行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-打印最后一个字段值大于-4-的输入行"><span class="nav-number">3.</span> <span class="nav-text">2.打印最后一个字段值大于 4 的输入行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-打印所有输入行的字段数的总和"><span class="nav-number">4.</span> <span class="nav-text">3.打印所有输入行的字段数的总和</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-打印包含-Beth-的行的数量"><span class="nav-number">5.</span> <span class="nav-text">4.打印包含 Beth 的行的数量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-打印至少包含一个字段的行"><span class="nav-number">6.</span> <span class="nav-text">6.打印至少包含一个字段的行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-在每一行的前面加上它的字段数"><span class="nav-number">7.</span> <span class="nav-text">8.在每一行的前面加上它的字段数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-交换每一行的第-1-与第-2-个字段-并打印该行"><span class="nav-number">8.</span> <span class="nav-text">10.交换每一行的第 1 与第 2 个字段, 并打印该行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-打印删除了第-2-个字段后的行"><span class="nav-number">9.</span> <span class="nav-text">12.打印删除了第 2 个字段后的行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#14-打印每一行的所有字段值之和"><span class="nav-number">10.</span> <span class="nav-text">14.打印每一行的所有字段值之和</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#16-将每一行的每一个字段用它的绝对值替换"><span class="nav-number">11.</span> <span class="nav-text">16.将每一行的每一个字段用它的绝对值替换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#18-拿出相同的字段"><span class="nav-number">12.</span> <span class="nav-text">18.拿出相同的字段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#21-字符串拼接，输出所有人名"><span class="nav-number">13.</span> <span class="nav-text">21.字符串拼接，输出所有人名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#23-使用-length-NF-与-NR-计算行-单词与字符的数量-为方便起见-我们将每个字段都当成一个单词"><span class="nav-number">14.</span> <span class="nav-text">23.使用 length, NF 与 NR 计算行, 单词与字符的数量, 为方便起见, 我们将每个字段都当成一个单词</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#25-输入行的总行数"><span class="nav-number">15.</span> <span class="nav-text">25.输入行的总行数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#27-打印每一个输入行的最后一个字段"><span class="nav-number">16.</span> <span class="nav-text">27.打印每一个输入行的最后一个字段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#28-打印最后一行的最后一个字段"><span class="nav-number">17.</span> <span class="nav-text">28.打印最后一行的最后一个字段</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Togal</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.2</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+
+    
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2142597"></script>
+      <!-- UY END -->
+    
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("CJ63iNuOaA8NUPGETVCAQygX-gzGzoHsz", "2fcMeVJSrs6zUHtAV0lMv98G");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
