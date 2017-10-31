@@ -8,7 +8,7 @@
     <atom:link href="/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>well done</description>
-    <pubDate>Tue, 31 Oct 2017 02:48:31 GMT</pubDate>
+    <pubDate>Tue, 31 Oct 2017 03:34:26 GMT</pubDate>
     <generator>http://hexo.io/</generator>
     
     <item>
@@ -160,32 +160,45 @@
     </item>
     
     <item>
-      <title>pyenv Python版本安装、管理</title>
-      <link>http://yoursite.com/2017/09/16/pyenv-Python/</link>
-      <guid>http://yoursite.com/2017/09/16/pyenv-Python/</guid>
+      <title>hexo基本命令</title>
+      <link>http://yoursite.com/2017/09/16/hexo%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/</link>
+      <guid>http://yoursite.com/2017/09/16/hexo%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/</guid>
       <pubDate>Sat, 16 Sep 2017 07:56:35 GMT</pubDate>
       <description>
       
-        &lt;h3 id=&quot;pyenv-Python版本安装、管理&quot;&gt;&lt;a href=&quot;#pyenv-Python版本安装、管理&quot; class=&quot;headerlink&quot; title=&quot;pyenv Python版本安装、管理&quot;&gt;&lt;/a&gt;pyenv Python版本安装、管理&lt;/h3&gt;&lt;bloc
+        &lt;h4 id=&quot;进入目录：&quot;&gt;&lt;a href=&quot;#进入目录：&quot; class=&quot;headerlink&quot; title=&quot;进入目录：&quot;&gt;&lt;/a&gt;进入目录：&lt;/h4&gt;&lt;blockquote&gt;
+&lt;p&gt;cd E:\hexo-blog\blog&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;###
       
       </description>
       
-      <content:encoded><![CDATA[<h3 id="pyenv-Python版本安装、管理"><a href="#pyenv-Python版本安装、管理" class="headerlink" title="pyenv Python版本安装、管理"></a>pyenv Python版本安装、管理</h3><blockquote>
-<p><strong><em>note1:</em></strong> virtualenv通过创建独立Python开发环境的工具, 来解决依赖、版本以及间接权限<br><strong><em>note2:</em></strong> Virtaulenvwrapper是virtualenv的扩展包，用于更方便管理虚拟环境</p>
+      <content:encoded><![CDATA[<h4 id="进入目录："><a href="#进入目录：" class="headerlink" title="进入目录："></a>进入目录：</h4><blockquote>
+<p>cd E:\hexo-blog\blog</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ yum install readline readline-devel readline-static -y </div><div class="line">$ yum install openssl openssl-devel openssl-static -y </div><div class="line">$ yum install sqlite-devel -y</div><div class="line">$ yum install bzip2-devel bzip2-libs -y</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ yum install patch vim git -y</div><div class="line">$ yum -y install epel-release  # 安装 epel 扩展源</div><div class="line">$ yum  install python-devel</div><div class="line">$ yum -y install python-pip</div><div class="line">$ yum clean all # 清除 cache</div></pre></td></tr></table></figure>
-<h3 id="语句合并："><a href="#语句合并：" class="headerlink" title="语句合并："></a>语句合并：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install readline readline-devel readline-static openssl openssl-devel openssl-static sqlite-devel bzip2-devel bzip2-libs epel-release python-devel python-pip patch vim git -y</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ pip install virtualenvwrapper</div><div class="line">$ find / -name virtualenvwrapper.sh</div><div class="line">$ vim ~/.bashrc</div><div class="line">export WORKON_HOME=$HOME/.virtualenvs</div><div class="line">source /usr/local/bin/virtualenvwrapper.sh</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">git clone git://github.com/yyuu/pyenv.git ~/.pyenv</div><div class="line">echo &apos;export PYENV_ROOT=&quot;$HOME/.pyenv&quot;&apos;&gt;&gt; ~/.bashrc # 指明环境变量</div><div class="line">echo &apos;export PATH=&quot;$PYENV_ROOT/bin:$PATH&quot;&apos;&gt;&gt; ~/.bashrc</div><div class="line">echo &apos;eval &quot;$(pyenv init -)&quot;&apos; &gt;&gt; ~/.bashrc  # 开启shims and autocompletion</div><div class="line">exec $SHELL -l  # 重新启动shell让其生效</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">$ pyenv install --list</div><div class="line">$ pyenv install 3.5.2 -v</div><div class="line">$ pyenv rehash</div><div class="line">$ pyenv versions</div><div class="line">* system (set by /Users/ce/workspace/.python-version)</div><div class="line">3.5.2</div><div class="line">$ pyenv global 3.5.2</div><div class="line">$ pyenv versions</div><div class="line">system</div><div class="line">* 3.5.2 (set by /Users/ce/workspace/.python-version)</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ workon  #查看虚拟环境</div><div class="line">$ mkvirtualenv env #创建虚拟环境</div><div class="line">$ rmvirtualenv env #删除虚拟环境</div></pre></td></tr></table></figure>
+<p>####清理缓存</p>
 <blockquote>
-<p>进入虚拟环境<br>$ workon vir-dir<br>或者<br>$ cd vir-dir ;source ./bin/activate<br>退出<br>$ deactivate</p>
+<p>hexo clean</p>
 </blockquote>
+<h4 id="生成文件"><a href="#生成文件" class="headerlink" title="生成文件"></a>生成文件</h4><blockquote>
+<p>hexo g </p>
+</blockquote>
+<h4 id="或者"><a href="#或者" class="headerlink" title="或者"></a><em>或者</em></h4><blockquote>
+<p>hexo generate</p>
+</blockquote>
+<h4 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h4><blockquote>
+<p>hexo d </p>
+</blockquote>
+<h4 id="或者-1"><a href="#或者-1" class="headerlink" title="或者"></a><em>或者</em></h4><blockquote>
+<p>hexo deploy</p>
+</blockquote>
+<h4 id="访问站点"><a href="#访问站点" class="headerlink" title="访问站点"></a>访问站点</h4><p><a href="https://togal.github.io" target="_blank" rel="external">togal.github.io</a></p>
+<p><a href="http://blog.togal.org" target="_blank" rel="external">blog.togal.org</a></p>
+<hr>
+<p><a href="http://www.jianshu.com/p/5973c05d7100" target="_blank" rel="external">参考文档:http://www.jianshu.com/p/5973c05d7100</a><br><a href="http://www.algolia.com" target="_blank" rel="external">第三方搜索工具:www.algolia.com</a><br><a href="https://leancloud.cn/" target="_blank" rel="external">第三方页面访问统计：https://leancloud.cn/</a><br><a href="http://theme-next.iissnan.com/" target="_blank" rel="external">Next官方主题说明文档：http://theme-next.iissnan.com/</a></p>
 ]]></content:encoded>
       
-      <comments>http://yoursite.com/2017/09/16/pyenv-Python/#disqus_thread</comments>
+      <comments>http://yoursite.com/2017/09/16/hexo%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/#disqus_thread</comments>
     </item>
     
   </channel>
