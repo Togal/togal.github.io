@@ -8,8 +8,34 @@
     <atom:link href="/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>well done</description>
-    <pubDate>Tue, 24 Oct 2017 12:01:32 GMT</pubDate>
+    <pubDate>Tue, 31 Oct 2017 02:48:31 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>Linux下使用wget从官网上下载Oracle JDK</title>
+      <link>http://yoursite.com/2017/10/31/Linux%E4%B8%8B%E4%BD%BF%E7%94%A8wget%E4%BB%8E%E5%AE%98%E7%BD%91%E4%B8%8A%E4%B8%8B%E8%BD%BDOracle-JDK/</link>
+      <guid>http://yoursite.com/2017/10/31/Linux%E4%B8%8B%E4%BD%BF%E7%94%A8wget%E4%BB%8E%E5%AE%98%E7%BD%91%E4%B8%8A%E4%B8%8B%E8%BD%BDOracle-JDK/</guid>
+      <pubDate>Tue, 31 Oct 2017 02:21:05 GMT</pubDate>
+      <description>
+      
+        &lt;h5 id=&quot;由于版权原因，Linux发行版并没有包含官方版的Oracle-JDK，必须自己从官网上下载安装。Oracle官网用Cookie限制下载方式，使眼下只能用浏览器进行下载，使用其他方式可能会导致下载失败。但是你有张良计，我有过墙梯。这种终极俩在广大劳动人民面前就如腐萤
+      
+      </description>
+      
+      <content:encoded><![CDATA[<h5 id="由于版权原因，Linux发行版并没有包含官方版的Oracle-JDK，必须自己从官网上下载安装。Oracle官网用Cookie限制下载方式，使眼下只能用浏览器进行下载，使用其他方式可能会导致下载失败。但是你有张良计，我有过墙梯。这种终极俩在广大劳动人民面前就如腐萤比皓月，粟米比沧海。斗转腾挪之后总归找到一些下载方法，本文以wget为例，收录几种下载的技巧，抛砖引玉。"><a href="#由于版权原因，Linux发行版并没有包含官方版的Oracle-JDK，必须自己从官网上下载安装。Oracle官网用Cookie限制下载方式，使眼下只能用浏览器进行下载，使用其他方式可能会导致下载失败。但是你有张良计，我有过墙梯。这种终极俩在广大劳动人民面前就如腐萤比皓月，粟米比沧海。斗转腾挪之后总归找到一些下载方法，本文以wget为例，收录几种下载的技巧，抛砖引玉。" class="headerlink" title="由于版权原因，Linux发行版并没有包含官方版的Oracle JDK，必须自己从官网上下载安装。Oracle官网用Cookie限制下载方式，使眼下只能用浏览器进行下载，使用其他方式可能会导致下载失败。但是你有张良计，我有过墙梯。这种终极俩在广大劳动人民面前就如腐萤比皓月，粟米比沧海。斗转腾挪之后总归找到一些下载方法，本文以wget为例，收录几种下载的技巧，抛砖引玉。"></a>由于版权原因，Linux发行版并没有包含官方版的Oracle JDK，必须自己从官网上下载安装。Oracle官网用Cookie限制下载方式，使眼下只能用浏览器进行下载，使用其他方式可能会导致下载失败。但是你有张良计，我有过墙梯。这种终极俩在广大劳动人民面前就如腐萤比皓月，粟米比沧海。斗转腾挪之后总归找到一些下载方法，本文以wget为例，收录几种下载的技巧，抛砖引玉。</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span>FOR JDK 8u60</div><div class="line"></div><div class="line"><span class="meta">#</span>RPM:</div><div class="line"></div><div class="line">wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u60-b27/jdk-8u60-linux-x64.rpm</div><div class="line"></div><div class="line"><span class="meta">#</span>tar.gz:</div><div class="line"></div><div class="line">wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie"  http://download.oracle.com/otn-pub/java/jdk/8u60-b27/jdk-8u60-linux-x64.tar.gz</div><div class="line"></div><div class="line"><span class="meta">#</span>FOR JDK 8u65</div><div class="line"></div><div class="line"><span class="meta">#</span>tar.gz</div><div class="line"></div><div class="line">wget --no-check-certificate -c --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u65-b17/jdk-8u65-linux-x64.tar.gz</div></pre></td></tr></table></figure>
+<ul>
+<li>–no-check-certificate</li>
+</ul>
+<h5 id="Only-required-with-wget-1-12-and-earlier-which-do-not-support-Subject-Alternative-Name-SAN-certificates-mainly-Red-Hat-Enterprise-Linux-6-x-and-friends-such-as-CentOS-1-13-wasreleased-in-August-2011"><a href="#Only-required-with-wget-1-12-and-earlier-which-do-not-support-Subject-Alternative-Name-SAN-certificates-mainly-Red-Hat-Enterprise-Linux-6-x-and-friends-such-as-CentOS-1-13-wasreleased-in-August-2011" class="headerlink" title="Only required with wget 1.12 and earlier, which do not support Subject Alternative Name (SAN) certificates (mainly Red Hat Enterprise Linux 6.x and friends, such as CentOS). 1.13 wasreleased in August 2011."></a>Only required with wget 1.12 and earlier, which do not support Subject Alternative Name (SAN) certificates (mainly Red Hat Enterprise Linux 6.x and friends, such as CentOS). 1.13 wasreleased in August 2011.</h5><h5 id="To-see-the-current-version-use-wget-–version-head-1"><a href="#To-see-the-current-version-use-wget-–version-head-1" class="headerlink" title="To see the current version, use: wget –version | head -1"></a>To see the current version, use: wget –version | head -1</h5><ul>
+<li>-c / –continue</li>
+</ul>
+<h5 id="Allows-continuing-an-unfinished-download"><a href="#Allows-continuing-an-unfinished-download" class="headerlink" title="Allows continuing an unfinished download."></a>Allows continuing an unfinished download.</h5><ul>
+<li>–header “Cookie: oraclelicense=accept-securebackup-cookie”</li>
+</ul>
+<h5 id="Since-15th-March-2014-this-cookie-is-provided-to-the-user-after-accepting-the-License-Agreementand-is-necessary-for-accessing-the-Java-packages-in-download-oracle-com-The-previous-and-first-implementation-in-27th-March-2012-made-use-of-the-cookie-gpw-e24-http-3A-2F-2Fwww-oracle-com-…-Both-cases-remain-unannounced-to-the-public"><a href="#Since-15th-March-2014-this-cookie-is-provided-to-the-user-after-accepting-the-License-Agreementand-is-necessary-for-accessing-the-Java-packages-in-download-oracle-com-The-previous-and-first-implementation-in-27th-March-2012-made-use-of-the-cookie-gpw-e24-http-3A-2F-2Fwww-oracle-com-…-Both-cases-remain-unannounced-to-the-public" class="headerlink" title="Since 15th March 2014 this cookie is provided to the user after accepting the License Agreementand is necessary for accessing the Java packages in download.oracle.com. The previous (and first) implementation in 27th March 2012 made use of the cookie gpw_e24=http%3A%2F%2Fwww.oracle.com[…]. Both cases remain unannounced to the public."></a>Since 15th March 2014 this cookie is provided to the user after accepting the License Agreementand is necessary for accessing the Java packages in download.oracle.com. The previous (and first) implementation in 27th March 2012 made use of the cookie gpw_e24=http%3A%2F%2Fwww.oracle.com[…]. Both cases remain unannounced to the public.</h5><h5 id="The-value-doesn’t-have-to-be-“accept-securebackup-cookie“"><a href="#The-value-doesn’t-have-to-be-“accept-securebackup-cookie“" class="headerlink" title="The value doesn’t have to be “accept-securebackup-cookie“."></a>The value doesn’t have to be “accept-securebackup-cookie“.</h5>]]></content:encoded>
+      
+      <comments>http://yoursite.com/2017/10/31/Linux%E4%B8%8B%E4%BD%BF%E7%94%A8wget%E4%BB%8E%E5%AE%98%E7%BD%91%E4%B8%8A%E4%B8%8B%E8%BD%BDOracle-JDK/#disqus_thread</comments>
+    </item>
     
     <item>
       <title>google hacking.md</title>
@@ -177,31 +203,6 @@
 ]]></content:encoded>
       
       <comments>http://yoursite.com/2017/09/16/pyenv-Python/#disqus_thread</comments>
-    </item>
-    
-    <item>
-      <title>Hello World</title>
-      <link>http://yoursite.com/2017/08/27/hello-world/</link>
-      <guid>http://yoursite.com/2017/08/27/hello-world/</guid>
-      <pubDate>Sun, 27 Aug 2017 05:14:38 GMT</pubDate>
-      <description>
-      
-        &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
-      
-      </description>
-      
-      <content:encoded><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-]]></content:encoded>
-      
-      <comments>http://yoursite.com/2017/08/27/hello-world/#disqus_thread</comments>
     </item>
     
   </channel>
