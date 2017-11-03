@@ -4,7 +4,7 @@
   xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Togal</title>
-    <link>http://yoursite.com/</link>
+    <link>http://blog.togal.org/</link>
     <atom:link href="/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>世间并无普世的成功定律，但却有普世的失败定律，你只要精通这些失败定律并尽量避免，那么，无疑就离自我成就更近一大步！</description>
@@ -13,8 +13,8 @@
     
     <item>
       <title>flume学习</title>
-      <link>http://yoursite.com/2017/11/01/flume%E5%AD%A6%E4%B9%A0/</link>
-      <guid>http://yoursite.com/2017/11/01/flume%E5%AD%A6%E4%B9%A0/</guid>
+      <link>http://blog.togal.org/2017/11/01/flume%E5%AD%A6%E4%B9%A0/</link>
+      <guid>http://blog.togal.org/2017/11/01/flume%E5%AD%A6%E4%B9%A0/</guid>
       <pubDate>Wed, 01 Nov 2017 08:47:20 GMT</pubDate>
       <description>
       
@@ -74,13 +74,13 @@
 <p><a href="https://flume.apache.org/FlumeUserGuide.html" target="_blank" rel="external">flume官方指南</a></p>
 ]]></content:encoded>
       
-      <comments>http://yoursite.com/2017/11/01/flume%E5%AD%A6%E4%B9%A0/#disqus_thread</comments>
+      <comments>http://blog.togal.org/2017/11/01/flume%E5%AD%A6%E4%B9%A0/#disqus_thread</comments>
     </item>
     
     <item>
       <title>Linux下使用wget从官网上下载Oracle JDK</title>
-      <link>http://yoursite.com/2017/10/31/Linux%E4%B8%8B%E4%BD%BF%E7%94%A8wget%E4%BB%8E%E5%AE%98%E7%BD%91%E4%B8%8A%E4%B8%8B%E8%BD%BDOracle-JDK/</link>
-      <guid>http://yoursite.com/2017/10/31/Linux%E4%B8%8B%E4%BD%BF%E7%94%A8wget%E4%BB%8E%E5%AE%98%E7%BD%91%E4%B8%8A%E4%B8%8B%E8%BD%BDOracle-JDK/</guid>
+      <link>http://blog.togal.org/2017/10/31/Linux%E4%B8%8B%E4%BD%BF%E7%94%A8wget%E4%BB%8E%E5%AE%98%E7%BD%91%E4%B8%8A%E4%B8%8B%E8%BD%BDOracle-JDK/</link>
+      <guid>http://blog.togal.org/2017/10/31/Linux%E4%B8%8B%E4%BD%BF%E7%94%A8wget%E4%BB%8E%E5%AE%98%E7%BD%91%E4%B8%8A%E4%B8%8B%E8%BD%BDOracle-JDK/</guid>
       <pubDate>Tue, 31 Oct 2017 02:21:05 GMT</pubDate>
       <description>
       
@@ -100,13 +100,13 @@
 </ul>
 <h5 id="Since-15th-March-2014-this-cookie-is-provided-to-the-user-after-accepting-the-License-Agreementand-is-necessary-for-accessing-the-Java-packages-in-download-oracle-com-The-previous-and-first-implementation-in-27th-March-2012-made-use-of-the-cookie-gpw-e24-http-3A-2F-2Fwww-oracle-com-…-Both-cases-remain-unannounced-to-the-public"><a href="#Since-15th-March-2014-this-cookie-is-provided-to-the-user-after-accepting-the-License-Agreementand-is-necessary-for-accessing-the-Java-packages-in-download-oracle-com-The-previous-and-first-implementation-in-27th-March-2012-made-use-of-the-cookie-gpw-e24-http-3A-2F-2Fwww-oracle-com-…-Both-cases-remain-unannounced-to-the-public" class="headerlink" title="Since 15th March 2014 this cookie is provided to the user after accepting the License Agreementand is necessary for accessing the Java packages in download.oracle.com. The previous (and first) implementation in 27th March 2012 made use of the cookie gpw_e24=http%3A%2F%2Fwww.oracle.com[…]. Both cases remain unannounced to the public."></a>Since 15th March 2014 this cookie is provided to the user after accepting the License Agreementand is necessary for accessing the Java packages in download.oracle.com. The previous (and first) implementation in 27th March 2012 made use of the cookie gpw_e24=http%3A%2F%2Fwww.oracle.com[…]. Both cases remain unannounced to the public.</h5><h5 id="The-value-doesn’t-have-to-be-“accept-securebackup-cookie“"><a href="#The-value-doesn’t-have-to-be-“accept-securebackup-cookie“" class="headerlink" title="The value doesn’t have to be “accept-securebackup-cookie“."></a>The value doesn’t have to be “accept-securebackup-cookie“.</h5>]]></content:encoded>
       
-      <comments>http://yoursite.com/2017/10/31/Linux%E4%B8%8B%E4%BD%BF%E7%94%A8wget%E4%BB%8E%E5%AE%98%E7%BD%91%E4%B8%8A%E4%B8%8B%E8%BD%BDOracle-JDK/#disqus_thread</comments>
+      <comments>http://blog.togal.org/2017/10/31/Linux%E4%B8%8B%E4%BD%BF%E7%94%A8wget%E4%BB%8E%E5%AE%98%E7%BD%91%E4%B8%8A%E4%B8%8B%E8%BD%BDOracle-JDK/#disqus_thread</comments>
     </item>
     
     <item>
-      <title>google hacking.md</title>
-      <link>http://yoursite.com/2017/10/24/google%20hacking/</link>
-      <guid>http://yoursite.com/2017/10/24/google%20hacking/</guid>
+      <title>google hacking</title>
+      <link>http://blog.togal.org/2017/10/24/google%20hacking/</link>
+      <guid>http://blog.togal.org/2017/10/24/google%20hacking/</guid>
       <pubDate>Tue, 24 Oct 2017 10:55:13 GMT</pubDate>
       <description>
       
@@ -151,13 +151,13 @@
 </ul>
 ]]></content:encoded>
       
-      <comments>http://yoursite.com/2017/10/24/google%20hacking/#disqus_thread</comments>
+      <comments>http://blog.togal.org/2017/10/24/google%20hacking/#disqus_thread</comments>
     </item>
     
     <item>
       <title>Hello Hexo</title>
-      <link>http://yoursite.com/2017/10/24/hello-world/</link>
-      <guid>http://yoursite.com/2017/10/24/hello-world/</guid>
+      <link>http://blog.togal.org/2017/10/24/hello-world/</link>
+      <guid>http://blog.togal.org/2017/10/24/hello-world/</guid>
       <pubDate>Tue, 24 Oct 2017 10:55:13 GMT</pubDate>
       <description>
       
@@ -176,13 +176,13 @@
 <p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
 ]]></content:encoded>
       
-      <comments>http://yoursite.com/2017/10/24/hello-world/#disqus_thread</comments>
+      <comments>http://blog.togal.org/2017/10/24/hello-world/#disqus_thread</comments>
     </item>
     
     <item>
       <title>awk</title>
-      <link>http://yoursite.com/2017/09/24/awk/</link>
-      <guid>http://yoursite.com/2017/09/24/awk/</guid>
+      <link>http://blog.togal.org/2017/09/24/awk/</link>
+      <guid>http://blog.togal.org/2017/09/24/awk/</guid>
       <pubDate>Sun, 24 Sep 2017 09:38:47 GMT</pubDate>
       <description>
       
@@ -222,7 +222,7 @@
 <h3 id="28-打印最后一行的最后一个字段"><a href="#28-打印最后一行的最后一个字段" class="headerlink" title="28.打印最后一行的最后一个字段"></a>28.打印最后一行的最后一个字段</h3><figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&#123; field = <span class="variable">$NF</span> &#125;</div><div class="line"><span class="keyword">END</span> &#123; print field &#125;</div></pre></td></tr></table></figure>
 ]]></content:encoded>
       
-      <comments>http://yoursite.com/2017/09/24/awk/#disqus_thread</comments>
+      <comments>http://blog.togal.org/2017/09/24/awk/#disqus_thread</comments>
     </item>
     
   </channel>
