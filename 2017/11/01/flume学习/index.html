@@ -516,7 +516,7 @@
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
-    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+    本博客所有文章除特别声明外，均采用 <a href="https://www.gnu.org/licenses/gpl-3.0.en.html" rel="external nofollow" target="_blank">GPL</a> 许可协议。转载请注明出处！
   </li>
 </ul>
 
@@ -727,6 +727,10 @@ var jiathis_config={
                   <a href="https://www.google.com/" title="Google" target="_blank">Google</a>
                 </li>
               
+                <li class="links-of-blogroll-item">
+                  <a href="http://scheme-lib.evilbinary.org/" title="Scheme-Web" target="_blank">Scheme-Web</a>
+                </li>
+              
             </ul>
           </div>
         
@@ -830,10 +834,10 @@ var jiathis_config={
 
 
 
-
-
   
   
+
+
 
 
 
@@ -866,7 +870,7 @@ var jiathis_config={
   <script type="text/javascript" src="/lib/three/three.min.js"></script>
 
   
-  <script type="text/javascript" src="/lib/three/canvas_lines.min.js"></script>
+  <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
 
   
   <script type="text/javascript" src="/lib/three/canvas_sphere.min.js"></script>
@@ -1058,6 +1062,28 @@ var jiathis_config={
   
 
   
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
 
   
 
