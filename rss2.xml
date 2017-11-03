@@ -7,9 +7,75 @@
     <link>http://yoursite.com/</link>
     <atom:link href="/rss2.xml" rel="self" type="application/rss+xml"/>
     
-    <description>well done</description>
-    <pubDate>Tue, 31 Oct 2017 04:00:24 GMT</pubDate>
+    <description>���䲢�������ĳɹ����ɣ���ȴ��������ʧ�ܶ��ɣ���ֻҪ��ͨ��Щʧ�ܶ��ɲ��������⣬��ô�����ɾ������ҳɾ͸���һ�󲽣�</description>
+    <pubDate>Thu, 02 Nov 2017 11:27:43 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>flume学习</title>
+      <link>http://yoursite.com/2017/11/01/flume%E5%AD%A6%E4%B9%A0/</link>
+      <guid>http://yoursite.com/2017/11/01/flume%E5%AD%A6%E4%B9%A0/</guid>
+      <pubDate>Wed, 01 Nov 2017 08:47:20 GMT</pubDate>
+      <description>
+      
+        &lt;h3 id=&quot;一、理论知识&quot;&gt;&lt;a href=&quot;#一、理论知识&quot; class=&quot;headerlink&quot; title=&quot;一、理论知识&quot;&gt;&lt;/a&gt;一、理论知识&lt;/h3&gt;&lt;h4 id=&quot;1-Flume使用的前提&quot;&gt;&lt;a href=&quot;#1-Flume使用的前提&quot; class=&quot;head
+      
+      </description>
+      
+      <content:encoded><![CDATA[<h3 id="一、理论知识"><a href="#一、理论知识" class="headerlink" title="一、理论知识"></a>一、理论知识</h3><h4 id="1-Flume使用的前提"><a href="#1-Flume使用的前提" class="headerlink" title="1. Flume使用的前提"></a>1. Flume使用的前提</h4><p> Flume使用 java编写，其需要运行在 Java1.6或更高版本之上。</p>
+<h4 id="2-Flume的定义"><a href="#2-Flume的定义" class="headerlink" title="2. Flume的定义"></a>2. Flume的定义</h4><p> Flume是一个分布式、可靠、高效可用的海量日志采集、聚合和传输系统，支持在系统中定制各类数据发送方，用于搜集数据；同时，flume提供对数据进行加单处理，并写到各种数据接受方（可定制）的能力。<br>核心一句话：将数据从数据源收集过来，再送到目的地。为了保证输送一定成功，在送到目的地之前，会先缓冲数据，待数据真正到的目的地后，删除自己缓冲的数据。</p>
+<h4 id="3-组件及作用"><a href="#3-组件及作用" class="headerlink" title="3. 组件及作用"></a>3. 组件及作用</h4><p>source：从client端收集数据，传递个channel。直接读取：文件source的有两种方式</p>
+<ul>
+<li>ExecuteSource:以运行linux命令的方式，持续的输出最新的数据，如tail –f 文件名指令，在这种方式下取的文件名必须是指定的。</li>
+</ul>
+<ul>
+<li>SpoolSource：检测配置的目录下新增的文件，并将文件中的数据读取出来。</li>
+</ul>
+<p>channel：缓冲数据，连接sources和sinks，有点像队列。类型有MemoryChannel，JDBC Channel，FileChannel等。</p>
+<p>sink：从channel收集数据，运行一个独立线程。可以向文件系统、数据库、hadoop存储数据。</p>
+<p>在日志数据较少时，可以将数据存储在文件系统中，并且设定一定的时间间隔保存数据。<br>  在日志数据较多时，可以将相应的日志存储到hadoop中，便于日后进行相应的数据分析。<br>组件名称功能介绍</p>
+<p><img src="http://owcr8i5la.bkt.clouddn.com/201711011652_768.png" alt=""></p>
+<ul>
+<li>源将事件写到一个多或者多个通道中。</li>
+<li>接收器只从一个通道接收事件。</li>
+<li>代理可能会有多个源、通道与接收器</li>
+<li>Event是flume数据传输的基本单元，flume以事件的形式将数据从源头传送到目的地。</li>
+<li><u>一个 Event 由 Map<string,string>Headers 和 byte[] body 组成，其中 Headers 保存了 Event 的属性，body 保存了 Event 的内容。</string,string></u></li>
+<li>Source:负责接收events或通过特殊机制产生events，并将events批量的放到一个或多个channels。</li>
+<li>Channel位于sources和sinks之间，用于缓存进来的events，当sink成功的将events发送到下一跳的channel或最终目的，events从channel移除。</li>
+<li>Sink：负责将events传输到吓一跳或最终目的，成功完成后将events从channel移除。</li>
+</ul>
+<p>Flume Source支持的类型：</p>
+<p><img src="http://owcr8i5la.bkt.clouddn.com/201711011655_874.png" alt=""></p>
+<p>Flume Channel支持的类型：</p>
+<p><img src="http://owcr8i5la.bkt.clouddn.com/201711011656_690.png" alt=""></p>
+<p>Flume Sink支持的类型：</p>
+<p><img src="http://owcr8i5la.bkt.clouddn.com/201711011656_52.png" alt=""></p>
+<h4 id="4-Apache-Avro-与-Thrift-比较"><a href="#4-Apache-Avro-与-Thrift-比较" class="headerlink" title="4. Apache Avro 与 Thrift 比较"></a>4. Apache Avro 与 Thrift 比较</h4><p><code>Avro和Thrift都是跨语言，基于二进制的高性能的通讯中间件. 它们都提供了数据序列化的功能和RPC服务. 总体功能上类似，但是哲学不一样. Thrift出自Facebook用于后台各个服务间的通讯,Thrift的设计强调统一的编程接口的多语言通讯框架. Avro出自Hadoop之父Doug Cutting, 在Thrift已经相当流行的情况下Avro的推出，其目标不仅是提供一套类似Thrift的通讯中间件更是要建立一个新的，标准性的云计算的数据交换和存储的Protocol。 这个和Thrift的理念不同，Thrift认为没有一个完美的方案可以解决所有问题，因此尽量保持一个Neutral框架，插入不同的实现并互相交互。而Avro偏向实用，排斥多种方案带来的 可能的混乱，主张建立一个统一的标准，并不介意采用特定的优化。Avro的创新之处在于融合了显式,declarative的Schema和高效二进制的数据表达，强调数据的自我描述，克服了以往单纯XML或二进制系统的缺陷。Avro对Schema动态加载功能，是Thrift编程接口所不具备的，符合了Hadoop上的Hive/Pig及NOSQL 等既属于ad hoc，又追求性能的应用需求.</code></p>
+<ul>
+<li><strong><em>语言绑定</em></strong></li>
+</ul>
+<p>目前阶段Thrift比Avro支持的语言更丰富.</p>
+<p> Thrift:  C++, C#, Cocoa, Erlang, Haskell, Java, Ocami, Perl, PHP, Python, Ruby, Smalltalk.</p>
+<p> Avro:   C, C++, Java, Python, Ruby, PHP.</p>
+<ul>
+<li><p><strong><em>数据类型</em></strong></p>
+<p>从常见的数据类型的角度来说， Avro和Thrift非常接近，功能上并没有什么区别。</p>
+</li>
+</ul>
+<hr>
+<h3 id="二、安装"><a href="#二、安装" class="headerlink" title="二、安装"></a>二、安装</h3><h4 id="1-下载JDK"><a href="#1-下载JDK" class="headerlink" title="1.下载JDK"></a>1.下载JDK</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u152-b16/aa0333dd3019491ca4f6ddbe78cdb6d0/jdk-8u152-linux-x64.tar.gz</div></pre></td></tr></table></figure>
+<h4 id="2-下载flume"><a href="#2-下载flume" class="headerlink" title="2.下载flume"></a>2.下载flume</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wget http://mirrors.tuna.tsinghua.edu.cn/apache/flume/1.8.0/apache-flume-1.8.0-bin.tar.gz</div></pre></td></tr></table></figure>
+<h4 id="3-添加到全局环境变量"><a href="#3-添加到全局环境变量" class="headerlink" title="3.添加到全局环境变量"></a>3.添加到全局环境变量</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span>vim /etc/profile</div><div class="line"><span class="meta">#</span>添加以下内容</div><div class="line">JAVA_HOME=/usr/local/jdk1.8.0_152</div><div class="line">FLUME_HOME=/usr/local/apache-flume-1.8.0</div><div class="line">export CLASSPATH=.:$&#123;JAVA_HOME&#125;/lib/dt.jar:$&#123;JAVA_HOME&#125;/lib/tools.jar</div><div class="line">export PATH=.:$&#123;PATH&#125;:$&#123;GOHOME&#125;/bin:$&#123;JAVA_HOME&#125;/bin:$&#123;FLUME_HOME&#125;/bin</div></pre></td></tr></table></figure>
+<h4 id="4-验证安装"><a href="#4-验证安装" class="headerlink" title="4.验证安装"></a>4.验证安装</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span>验证JDK</div><div class="line"><span class="meta">$</span> cat Test.java </div><div class="line">public class Test &#123; </div><div class="line">    public static void main(String args[]) &#123; </div><div class="line">        System.out.println("A new jdk test !"); </div><div class="line">    &#125; </div><div class="line">&#125; </div><div class="line"><span class="meta">$</span> javac Test.java</div><div class="line"><span class="meta">$</span> java Test</div><div class="line">A new jdk test !</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span>验证flume</div><div class="line"><span class="meta">$</span> flume-ng version</div><div class="line">Flume 1.8.0</div><div class="line">Source code repository: https://git-wip-us.apache.org/repos/asf/flume.git</div><div class="line">Revision: 99f591994468633fc6f8701c5fc53e0214b6da4f</div><div class="line">Compiled by denes on Fri Sep 15 14:58:00 CEST 2017</div><div class="line">From source with checksum fbb44c8c8fb63a49be0a59e27316833d</div></pre></td></tr></table></figure>
+<p>输出”A new jdk test !”和flume版本表示成功！</p>
+<h3 id="三、运用"><a href="#三、运用" class="headerlink" title="三、运用"></a>三、运用</h3><p>。。。。。</p>
+<p><a href="https://flume.apache.org/FlumeUserGuide.html" target="_blank" rel="external">flume官方指南</a></p>
+]]></content:encoded>
+      
+      <comments>http://yoursite.com/2017/11/01/flume%E5%AD%A6%E4%B9%A0/#disqus_thread</comments>
+    </item>
     
     <item>
       <title>Linux下使用wget从官网上下载Oracle JDK</title>
@@ -157,35 +223,6 @@
 ]]></content:encoded>
       
       <comments>http://yoursite.com/2017/09/24/awk/#disqus_thread</comments>
-    </item>
-    
-    <item>
-      <title>pyenv Python版本安装、管理</title>
-      <link>http://yoursite.com/2017/09/16/pyenv-Python/</link>
-      <guid>http://yoursite.com/2017/09/16/pyenv-Python/</guid>
-      <pubDate>Sat, 16 Sep 2017 07:56:35 GMT</pubDate>
-      <description>
-      
-        &lt;h3 id=&quot;pyenv-Python版本安装、管理&quot;&gt;&lt;a href=&quot;#pyenv-Python版本安装、管理&quot; class=&quot;headerlink&quot; title=&quot;pyenv Python版本安装、管理&quot;&gt;&lt;/a&gt;pyenv Python版本安装、管理&lt;/h3&gt;&lt;bloc
-      
-      </description>
-      
-      <content:encoded><![CDATA[<h3 id="pyenv-Python版本安装、管理"><a href="#pyenv-Python版本安装、管理" class="headerlink" title="pyenv Python版本安装、管理"></a>pyenv Python版本安装、管理</h3><blockquote>
-<p><strong><em>note1:</em></strong> virtualenv通过创建独立Python开发环境的工具, 来解决依赖、版本以及间接权限<br><strong><em>note2:</em></strong> Virtaulenvwrapper是virtualenv的扩展包，用于更方便管理虚拟环境</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ yum install readline readline-devel readline-static -y </div><div class="line">$ yum install openssl openssl-devel openssl-static -y </div><div class="line">$ yum install sqlite-devel -y</div><div class="line">$ yum install bzip2-devel bzip2-libs -y</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ yum install patch vim git -y</div><div class="line">$ yum -y install epel-release  # 安装 epel 扩展源</div><div class="line">$ yum  install python-devel</div><div class="line">$ yum -y install python-pip</div><div class="line">$ yum clean all # 清除 cache</div></pre></td></tr></table></figure>
-<h3 id="语句合并："><a href="#语句合并：" class="headerlink" title="语句合并："></a>语句合并：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install readline readline-devel readline-static openssl openssl-devel openssl-static sqlite-devel bzip2-devel bzip2-libs epel-release python-devel python-pip patch vim git -y</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ pip install virtualenvwrapper</div><div class="line">$ find / -name virtualenvwrapper.sh</div><div class="line">$ vim ~/.bashrc</div><div class="line">export WORKON_HOME=$HOME/.virtualenvs</div><div class="line">source /usr/local/bin/virtualenvwrapper.sh</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">git clone git://github.com/yyuu/pyenv.git ~/.pyenv</div><div class="line">echo &apos;export PYENV_ROOT=&quot;$HOME/.pyenv&quot;&apos;&gt;&gt; ~/.bashrc # 指明环境变量</div><div class="line">echo &apos;export PATH=&quot;$PYENV_ROOT/bin:$PATH&quot;&apos;&gt;&gt; ~/.bashrc</div><div class="line">echo &apos;eval &quot;$(pyenv init -)&quot;&apos; &gt;&gt; ~/.bashrc  # 开启shims and autocompletion</div><div class="line">exec $SHELL -l  # 重新启动shell让其生效</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">$ pyenv install --list</div><div class="line">$ pyenv install 3.5.2 -v</div><div class="line">$ pyenv rehash</div><div class="line">$ pyenv versions</div><div class="line">* system (set by /Users/ce/workspace/.python-version)</div><div class="line">3.5.2</div><div class="line">$ pyenv global 3.5.2</div><div class="line">$ pyenv versions</div><div class="line">system</div><div class="line">* 3.5.2 (set by /Users/ce/workspace/.python-version)</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ workon  #查看虚拟环境</div><div class="line">$ mkvirtualenv env #创建虚拟环境</div><div class="line">$ rmvirtualenv env #删除虚拟环境</div></pre></td></tr></table></figure>
-<blockquote>
-<p>进入虚拟环境<br>$ workon vir-dir<br>或者<br>$ cd vir-dir ;source ./bin/activate<br>退出<br>$ deactivate</p>
-</blockquote>
-]]></content:encoded>
-      
-      <comments>http://yoursite.com/2017/09/16/pyenv-Python/#disqus_thread</comments>
     </item>
     
   </channel>
