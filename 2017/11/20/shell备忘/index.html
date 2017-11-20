@@ -125,14 +125,14 @@
 <meta name="description" content="string字符串长度、切片 1234567891011f=&quot;path1/path2/file.ext&quot;  len=&quot;$&amp;#123;#f&amp;#125;&quot; # = 20 (字符串长度) # 切片操作: $&amp;#123;&amp;lt;var&amp;gt;:&amp;lt;start&amp;gt;&amp;#125; or $&amp;#123;&amp;lt;var&amp;gt;:&amp;lt;start&amp;gt;:&amp;lt;length&amp;gt;&amp;#125;slice1">
 <meta name="keywords" content="shell">
 <meta property="og:type" content="article">
-<meta property="og:title" content="&#39;shell备忘&#39;">
+<meta property="og:title" content="shell学习备忘">
 <meta property="og:url" content="http://blog.togal.org/2017/11/20/shell备忘/index.html">
 <meta property="og:site_name" content="Togal">
 <meta property="og:description" content="string字符串长度、切片 1234567891011f=&quot;path1/path2/file.ext&quot;  len=&quot;$&amp;#123;#f&amp;#125;&quot; # = 20 (字符串长度) # 切片操作: $&amp;#123;&amp;lt;var&amp;gt;:&amp;lt;start&amp;gt;&amp;#125; or $&amp;#123;&amp;lt;var&amp;gt;:&amp;lt;start&amp;gt;:&amp;lt;length&amp;gt;&amp;#125;slice1">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-20T07:58:38.025Z">
+<meta property="og:updated_time" content="2017-11-20T11:17:24.258Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="&#39;shell备忘&#39;">
+<meta name="twitter:title" content="shell学习备忘">
 <meta name="twitter:description" content="string字符串长度、切片 1234567891011f=&quot;path1/path2/file.ext&quot;  len=&quot;$&amp;#123;#f&amp;#125;&quot; # = 20 (字符串长度) # 切片操作: $&amp;#123;&amp;lt;var&amp;gt;:&amp;lt;start&amp;gt;&amp;#125; or $&amp;#123;&amp;lt;var&amp;gt;:&amp;lt;start&amp;gt;:&amp;lt;length&amp;gt;&amp;#125;slice1">
 
 
@@ -169,7 +169,7 @@
 
 
 
-  <title>'shell备忘' | Togal</title>
+  <title>shell学习备忘 | Togal</title>
   
 
 
@@ -325,7 +325,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">'shell备忘'</h1>
+          <h1 class="post-title" itemprop="name headline">shell学习备忘</h1>
         
 
         <div class="post-meta">
@@ -355,7 +355,7 @@
 
           
           
-             <span id="/2017/11/20/shell备忘/" class="leancloud_visitors" data-flag-title="'shell备忘'">
+             <span id="/2017/11/20/shell备忘/" class="leancloud_visitors" data-flag-title="shell学习备忘">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -492,8 +492,8 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[[ "$&#123;name&#125;" &gt; "a" &amp;&amp; "$&#123;name&#125;" &lt; "m"  ]]</div></pre></td></tr></table></figure>
 <p>正则表达式/Globbing</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">t="abc123"</div><div class="line">[[ "$t" == abc* ]]         # true (globbing比较)</div><div class="line">[[ "$t" == "abc*" ]]       # false (字面比较)</div><div class="line">[[ "$t" =~ [abc]+[123]+ ]] # true (正则表达式比较)</div><div class="line">[[ "$t" =~ "abc*" ]]       # false (字面比较)</div></pre></td></tr></table></figure>
-<h5 id="脚本函数"><a href="#脚本函数" class="headerlink" title="脚本函数"></a>脚本函数</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">ExtractBashComments() &#123;</div><div class="line">        egrep "^#"</div><div class="line">    &#125; </div><div class="line"></div><div class="line">    cat myscript.sh | ExtractBashComments | wc </div><div class="line"></div><div class="line">    comments=$(ExtractBashComments &lt; myscript.sh)</div></pre></td></tr></table></figure>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">SumLines() &#123;  # iterating over stdin - similar to awk      </div><div class="line">        local sum=0</div><div class="line">        local line=””</div><div class="line">        while read line ; do</div><div class="line">            sum=$(($&#123;sum&#125; + $&#123;line&#125;))</div><div class="line">        done</div><div class="line">        echo $&#123;sum&#125;</div><div class="line">    &#125; </div><div class="line"></div><div class="line">    SumLines &lt; data_one_number_per_line.txt </div><div class="line"></div><div class="line">    log() &#123;  # classic logger</div><div class="line">       local prefix="[$(date +%Y/%m/%d\ %H:%M:%S)]: "</div><div class="line">       echo "$&#123;prefix&#125; $@" &gt;&amp;2</div><div class="line">    &#125; </div><div class="line"></div><div class="line">    log "INFO" "a message"</div></pre></td></tr></table></figure>
+<h5 id="脚本函数"><a href="#脚本函数" class="headerlink" title="脚本函数"></a>脚本函数</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">function ExtractBashComments() &#123;</div><div class="line">        egrep "^#"</div><div class="line">    &#125; </div><div class="line"></div><div class="line">    cat myscript.sh | ExtractBashComments | wc </div><div class="line"></div><div class="line">    comments=$(ExtractBashComments &lt; myscript.sh)</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">function SumLines() &#123;  # iterating over stdin - similar to awk      </div><div class="line">        local sum=0</div><div class="line">        local line=””</div><div class="line">        while read line ; do</div><div class="line">            sum=$(($&#123;sum&#125; + $&#123;line&#125;))</div><div class="line">        done</div><div class="line">        echo $&#123;sum&#125;</div><div class="line">    &#125; </div><div class="line"></div><div class="line">    SumLines &lt; data_one_number_per_line.txt </div><div class="line"></div><div class="line">    log() &#123;  # classic logger</div><div class="line">       local prefix="[$(date +%Y/%m/%d\ %H:%M:%S)]: "</div><div class="line">       echo "$&#123;prefix&#125; $@" &gt;&amp;2</div><div class="line">    &#125; </div><div class="line"></div><div class="line">    log "INFO" "a message"</div></pre></td></tr></table></figure>
 <h5 id="避免使用临时文件"><a href="#避免使用临时文件" class="headerlink" title="避免使用临时文件"></a>避免使用临时文件</h5><p>有些命令需要以文件名为参数，这样一来就不能使用管道。这个时候 &lt;() 就显出用处了，它可以接受一个命令，并把它转换成可以当成文件名之类的什么东西</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash"> 下载并比较两个网页</span></div><div class="line">diff &lt;(wget -O - url1) &lt;(wget -O - url2)</div></pre></td></tr></table></figure>
 <h6 id="here-documents"><a href="#here-documents" class="headerlink" title="here documents"></a>here documents</h6><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash"> 任何字词都可以当作分界符</span></div><div class="line">cmd &lt;&lt; delimiter</div><div class="line">  Here Document Content</div><div class="line">delimiter</div><div class="line"></div><div class="line"><span class="meta">#</span><span class="bash"> 作为结尾的delimiter一定要顶格写,前面不能有任何字符;</span></div><div class="line"><span class="meta">#</span><span class="bash"> 作为结尾的delimiter后面也不能有任何的字符(包括空格!!!);</span></div><div class="line"><span class="meta">#</span><span class="bash"> 作为起始的delimiter前后的空格会被省略掉</span></div></pre></td></tr></table></figure>
@@ -533,6 +533,7 @@
 <tr>
 <td>$?</td>
 <td>上一个命令的退出状态(管道命令使用${PIPESTATUS})</td>
+<td></td>
 </tr>
 <tr>
 <td>$#</td>
@@ -619,7 +620,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://blog.togal.org/2017/11/20/shell备忘/" title="'shell备忘'">http://blog.togal.org/2017/11/20/shell备忘/</a>
+    <a href="http://blog.togal.org/2017/11/20/shell备忘/" title="shell学习备忘">http://blog.togal.org/2017/11/20/shell备忘/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
