@@ -1,0 +1,1205 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-loading-bar.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="shell," />
+
+
+
+
+
+  <link rel="alternate" href="/rss2.xml" title="Togal" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="string字符串长度、切片 1234567891011f=&quot;path1/path2/file.ext&quot;  len=&quot;$&amp;#123;#f&amp;#125;&quot; # = 20 (字符串长度) # 切片操作: $&amp;#123;&amp;lt;var&amp;gt;:&amp;lt;start&amp;gt;&amp;#125; or $&amp;#123;&amp;lt;var&amp;gt;:&amp;lt;start&amp;gt;:&amp;lt;length&amp;gt;&amp;#125;slice1">
+<meta name="keywords" content="shell">
+<meta property="og:type" content="article">
+<meta property="og:title" content="&#39;shell备忘&#39;">
+<meta property="og:url" content="http://blog.togal.org/2017/11/20/shell备忘/index.html">
+<meta property="og:site_name" content="Togal">
+<meta property="og:description" content="string字符串长度、切片 1234567891011f=&quot;path1/path2/file.ext&quot;  len=&quot;$&amp;#123;#f&amp;#125;&quot; # = 20 (字符串长度) # 切片操作: $&amp;#123;&amp;lt;var&amp;gt;:&amp;lt;start&amp;gt;&amp;#125; or $&amp;#123;&amp;lt;var&amp;gt;:&amp;lt;start&amp;gt;:&amp;lt;length&amp;gt;&amp;#125;slice1">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-11-20T07:58:38.025Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="&#39;shell备忘&#39;">
+<meta name="twitter:description" content="string字符串长度、切片 1234567891011f=&quot;path1/path2/file.ext&quot;  len=&quot;$&amp;#123;#f&amp;#125;&quot; # = 20 (字符串长度) # 切片操作: $&amp;#123;&amp;lt;var&amp;gt;:&amp;lt;start&amp;gt;&amp;#125; or $&amp;#123;&amp;lt;var&amp;gt;:&amp;lt;start&amp;gt;:&amp;lt;length&amp;gt;&amp;#125;slice1">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://blog.togal.org/2017/11/20/shell备忘/"/>
+
+
+
+
+
+  <title>'shell备忘' | Togal</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <a href="https://github.com/Togal"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"></a>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Togal</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.togal.org/2017/11/20/shell备忘/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Togal">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/favicon.ico">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Togal">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">'shell备忘'</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-20T11:08:12+08:00">
+                2017-11-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/11/20/shell备忘/" class="leancloud_visitors" data-flag-title="'shell备忘'">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h5 id="string"><a href="#string" class="headerlink" title="string"></a>string</h5><p>字符串长度、切片</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">f="path1/path2/file.ext"  </div><div class="line"></div><div class="line">len="$&#123;#f&#125;" # = 20 (字符串长度) </div><div class="line"></div><div class="line"><span class="meta">#</span><span class="bash"> 切片操作: <span class="variable">$&#123;&lt;var&gt;:&lt;start&gt;&#125;</span> or <span class="variable">$&#123;&lt;var&gt;:&lt;start&gt;:&lt;length&gt;&#125;</span></span></div><div class="line">slice1="$&#123;f:6&#125;" # = "path2/file.ext"</div><div class="line">slice2="$&#123;f:6:5&#125;" # = "path2"</div><div class="line">slice3="$&#123;f: -8&#125;" # = "file.ext"(注意："-"前有空格)</div><div class="line">pos=6</div><div class="line">len=5</div><div class="line">slice4="$&#123;f:$&#123;pos&#125;:$&#123;len&#125;&#125;" # = "path2"</div></pre></td></tr></table></figure>
+<p>查找子字符串,[更多参考][<a href="http://tldp.org/LDP/abs/html/string-manipulation.html" target="_blank" rel="external">http://tldp.org/LDP/abs/html/string-manipulation.html</a>]</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">string="alibaba is a great company"</div><div class="line">echo `expr index "$string" is`#输出：8，这个语句的意思是：找出单词is在这名话中的位置</div></pre></td></tr></table></figure>
+<p>替换操作</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">f="path1/path2/file.ext"  </div><div class="line"></div><div class="line">single_subst="$&#123;f/path?/x&#125;"   # = "x/path2/file.ext"</div><div class="line">global_subst="$&#123;f//path?/x&#125;"  # = "x/x/file.ext" </div><div class="line"></div><div class="line"><span class="meta">#</span><span class="bash"> 字符串拆分</span></div><div class="line">readonly DIR_SEP="/"</div><div class="line">array=($&#123;f//$&#123;DIR_SEP&#125;/ &#125;)</div><div class="line">second_dir="$&#123;arrray[1]&#125;"     # = path2</div></pre></td></tr></table></figure>
+<p>删除头部或尾部</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">f="path1/path2/file.ext" </div><div class="line"></div><div class="line"><span class="meta">#</span><span class="bash"> 删除字符串头部</span></div><div class="line">extension="$&#123;f#*.&#125;"  # = "ext" </div><div class="line"></div><div class="line"><span class="meta">#</span><span class="bash"> 以贪婪匹配方式删除字符串头部</span></div><div class="line">filename="$&#123;f##*/&#125;"  # = "file.ext" </div><div class="line"></div><div class="line"><span class="meta">#</span><span class="bash"> 删除字符串尾部</span></div><div class="line">dirname="$&#123;f%/*&#125;"    # = "path1/path2" </div><div class="line"></div><div class="line"><span class="meta">#</span><span class="bash"> 以贪婪匹配方式删除字符串尾部</span></div><div class="line">root="$&#123;f%%/*&#125;"      # = "path1"</div></pre></td></tr></table></figure>
+<hr>
+<h5 id=""><a href="#" class="headerlink" title="[  ]"></a>[  ]</h5><p>sh里的”[“、”]”，它是一个可执行程序,因此，方括号后面必须加空格</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">which</span> [</span></div><div class="line">/usr/bin/[</div></pre></td></tr></table></figure>
+<h5 id="if-elif-else-fi"><a href="#if-elif-else-fi" class="headerlink" title="if elif else fi"></a>if elif else fi</h5><p>sh的流程控制不可为空,如果else分支没有语句执行，就不要写这个else</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">if condition1</div><div class="line">then</div><div class="line">	command1</div><div class="line">elif condition2</div><div class="line">	command2</div><div class="line">else</div><div class="line">	commandN</div><div class="line">fi</div></pre></td></tr></table></figure>
+<h5 id="for-while"><a href="#for-while" class="headerlink" title="for while"></a>for while</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">for var in item1 item2 ... itemN</div><div class="line">do</div><div class="line">	command1</div><div class="line">	command2</div><div class="line">	...</div><div class="line">	commandN</div><div class="line">done</div></pre></td></tr></table></figure>
+<p>写成一行：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">for var in item1 item2 ... itemN; do command1; command2… done;</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">while condition</div><div class="line">do</div><div class="line">	command</div><div class="line">done</div></pre></td></tr></table></figure>
+<p>无限循环：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">while true</div><div class="line">do</div><div class="line">	command</div><div class="line">done</div></pre></td></tr></table></figure>
+<h5 id="case"><a href="#case" class="headerlink" title="case"></a>case</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">case "$&#123;opt&#125;" in</div><div class="line">	"Install-Puppet-Server" )</div><div class="line">		install_master $1</div><div class="line">		exit</div><div class="line">	;;</div><div class="line"></div><div class="line">	"Install-Puppet-Client" )</div><div class="line">		install_client $1</div><div class="line">		exit</div><div class="line">	;;</div><div class="line"></div><div class="line">	"Config-Puppet-Server" )</div><div class="line">		config_puppet_master</div><div class="line">		exit</div><div class="line">	;;</div><div class="line"></div><div class="line">	"Config-Puppet-Client" )</div><div class="line">		config_puppet_client</div><div class="line">		exit</div><div class="line">	;;</div><div class="line"></div><div class="line">	"Exit" )</div><div class="line">		exit</div><div class="line">	;;</div><div class="line"></div><div class="line">	* ) echo "Bad option, please choose again"</div><div class="line">esac</div></pre></td></tr></table></figure>
+<h5 id="source"><a href="#source" class="headerlink" title="source ."></a>source .</h5><p>在bash里，source和.是等效的,包含、读入其他文件的内容</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">source ./function.sh</div><div class="line">. ./function.sh</div></pre></td></tr></table></figure>
+<p>如果function.sh是用户传入的参数，如何获得它的绝对路径呢？方法是</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash"><span class="variable">$1</span>是用户输入的参数，如function.sh</span></div><div class="line">real_path=`readlink -f $1`</div><div class="line">. $real_path</div></pre></td></tr></table></figure>
+<h5 id="脚本安全"><a href="#脚本安全" class="headerlink" title="脚本安全"></a>脚本安全</h5><p>以下面几句开始:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></div><div class="line">set -o nounset</div><div class="line">set -o errexit</div></pre></td></tr></table></figure>
+<p>这样做会避免两种常见的问题：</p>
+<ol>
+<li>引用未定义的变量(缺省值为“”)</li>
+<li>执行失败的命令被忽略</li>
+</ol>
+<h5 id="检查机制的替换"><a href="#检查机制的替换" class="headerlink" title="$? 检查机制的替换"></a>$? 检查机制的替换</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">if [ "$?"-ne 0]; then echo "command failed"; exit 1; fi</div></pre></td></tr></table></figure>
+<p>replace with</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">command || &#123; echo "command failed"; exit 1; &#125;</div></pre></td></tr></table></figure>
+<p>or</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">if ! command; then echo "command failed"; exit 1; fi</div></pre></td></tr></table></figure>
+<h5 id="变量注解"><a href="#变量注解" class="headerlink" title="变量注解"></a>变量注解</h5><p>Bash里可以对变量进行有限的注解。最重要的两个注解是：</p>
+<ol>
+<li>local(函数内部变量)</li>
+</ol>
+<ol>
+<li>readonly(只读变量)</li>
+</ol>
+<h5 id="用-代替反单绰号"><a href="#用-代替反单绰号" class="headerlink" title="用$()代替反单绰号(`)"></a>用$()代替反单绰号(`)</h5><p>$()能够内嵌使用，而且避免了转义符的麻烦</p>
+<h5 id="用-双层中括号替代"><a href="#用-双层中括号替代" class="headerlink" title="用[[]]双层中括号替代[]"></a>用[[]]双层中括号替代[]</h5><table>
+<thead>
+<tr>
+<th>操作符</th>
+<th>功能说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>\</td>
+<td>\</td>
+<td></td>
+<td>逻辑or(仅双中括号里使用)</td>
+</tr>
+<tr>
+<td>&amp;&amp;</td>
+<td>逻辑and(仅双中括号里使用)</td>
+</tr>
+<tr>
+<td>&lt;</td>
+<td>字符串比较(双中括号里不需要转移)</td>
+</tr>
+<tr>
+<td>-lt</td>
+<td>数字比较</td>
+</tr>
+<tr>
+<td>=</td>
+<td>字符串相等</td>
+</tr>
+<tr>
+<td>==</td>
+<td>以Globbing方式进行字符串比较(仅双中括号里使用，参考下文)</td>
+</tr>
+<tr>
+<td>=~</td>
+<td>用正则表达式进行字符串比较(仅双中括号里使用，参考下文)</td>
+</tr>
+<tr>
+<td>-n</td>
+<td>非空字符串</td>
+</tr>
+<tr>
+<td>-z</td>
+<td>空字符串</td>
+</tr>
+<tr>
+<td>-eq</td>
+<td>数字相等</td>
+</tr>
+<tr>
+<td>-ne</td>
+<td>数字不等</td>
+</tr>
+</tbody>
+</table>
+<p>单中括号</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[ "$&#123;name&#125;" \&gt; "a" -o $&#123;name&#125; \&lt; "m" ]</div></pre></td></tr></table></figure>
+<p>双中括号</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[[ "$&#123;name&#125;" &gt; "a" &amp;&amp; "$&#123;name&#125;" &lt; "m"  ]]</div></pre></td></tr></table></figure>
+<p>正则表达式/Globbing</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">t="abc123"</div><div class="line">[[ "$t" == abc* ]]         # true (globbing比较)</div><div class="line">[[ "$t" == "abc*" ]]       # false (字面比较)</div><div class="line">[[ "$t" =~ [abc]+[123]+ ]] # true (正则表达式比较)</div><div class="line">[[ "$t" =~ "abc*" ]]       # false (字面比较)</div></pre></td></tr></table></figure>
+<h5 id="脚本函数"><a href="#脚本函数" class="headerlink" title="脚本函数"></a>脚本函数</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">ExtractBashComments() &#123;</div><div class="line">        egrep "^#"</div><div class="line">    &#125; </div><div class="line"></div><div class="line">    cat myscript.sh | ExtractBashComments | wc </div><div class="line"></div><div class="line">    comments=$(ExtractBashComments &lt; myscript.sh)</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">SumLines() &#123;  # iterating over stdin - similar to awk      </div><div class="line">        local sum=0</div><div class="line">        local line=””</div><div class="line">        while read line ; do</div><div class="line">            sum=$(($&#123;sum&#125; + $&#123;line&#125;))</div><div class="line">        done</div><div class="line">        echo $&#123;sum&#125;</div><div class="line">    &#125; </div><div class="line"></div><div class="line">    SumLines &lt; data_one_number_per_line.txt </div><div class="line"></div><div class="line">    log() &#123;  # classic logger</div><div class="line">       local prefix="[$(date +%Y/%m/%d\ %H:%M:%S)]: "</div><div class="line">       echo "$&#123;prefix&#125; $@" &gt;&amp;2</div><div class="line">    &#125; </div><div class="line"></div><div class="line">    log "INFO" "a message"</div></pre></td></tr></table></figure>
+<h5 id="避免使用临时文件"><a href="#避免使用临时文件" class="headerlink" title="避免使用临时文件"></a>避免使用临时文件</h5><p>有些命令需要以文件名为参数，这样一来就不能使用管道。这个时候 &lt;() 就显出用处了，它可以接受一个命令，并把它转换成可以当成文件名之类的什么东西</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash"> 下载并比较两个网页</span></div><div class="line">diff &lt;(wget -O - url1) &lt;(wget -O - url2)</div></pre></td></tr></table></figure>
+<h6 id="here-documents"><a href="#here-documents" class="headerlink" title="here documents"></a>here documents</h6><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash"> 任何字词都可以当作分界符</span></div><div class="line">cmd &lt;&lt; delimiter</div><div class="line">  Here Document Content</div><div class="line">delimiter</div><div class="line"></div><div class="line"><span class="meta">#</span><span class="bash"> 作为结尾的delimiter一定要顶格写,前面不能有任何字符;</span></div><div class="line"><span class="meta">#</span><span class="bash"> 作为结尾的delimiter后面也不能有任何的字符(包括空格!!!);</span></div><div class="line"><span class="meta">#</span><span class="bash"> 作为起始的delimiter前后的空格会被省略掉</span></div></pre></td></tr></table></figure>
+<p>在标准输入上输入多行字符串</p>
+<p>Here Document 不仅可以在终端上使用，在shell 文件中也可以使用，例如下面的here.sh 文件</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">cat &lt;&lt; EOF &gt; output.sh</div><div class="line"><span class="built_in">echo</span> <span class="string">"This is output"</span></div><div class="line"><span class="built_in">echo</span> <span class="variable">$1</span></div><div class="line">EOF</div></pre></td></tr></table></figure>
+<p>使用 sh here.sh HereDocument运行这个脚本文件,会得到output.txt 这个新文件,其内容如下:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">echo "hello"</div><div class="line">echo "HereDocument"</div></pre></td></tr></table></figure>
+<p>如果不想展开这个变量怎么办呢，可以通过在起始的 delimiter的前后添加 “ 来实现,例如将上面的here.sh 改为</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">cat &lt;&lt; "EOF" &gt; output.sh  #注意引号</div><div class="line">echo "This is output"</div><div class="line">echo $1</div><div class="line">EOF</div></pre></td></tr></table></figure>
+<p>得到的output.sh 的内容为</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">echo "This is output"</div><div class="line">echo $1</div></pre></td></tr></table></figure>
+<h5 id="内置变量"><a href="#内置变量" class="headerlink" title="内置变量"></a>内置变量</h5><table>
+<thead>
+<tr>
+<th>变量</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$0</td>
+<td>脚本名称</td>
+</tr>
+<tr>
+<td>$n</td>
+<td>传给脚本/函数的第n个参数</td>
+</tr>
+<tr>
+<td>$$</td>
+<td>脚本的PID</td>
+</tr>
+<tr>
+<td>$!</td>
+<td>上一个被执行的命令的PID(后台运行的进程)</td>
+</tr>
+<tr>
+<td>$?</td>
+<td>上一个命令的退出状态(管道命令使用${PIPESTATUS})</td>
+</tr>
+<tr>
+<td>$#</td>
+<td>传递给脚本/函数的参数个数</td>
+</tr>
+<tr>
+<td>$@</td>
+<td>传递给脚本/函数的所有参数(识别每个参数)</td>
+</tr>
+<tr>
+<td>$*</td>
+<td>传递给脚本/函数的所有参数(把所有参数当成一个字符串)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>提示</strong>:<br><em>使用$</em>很少是正确的选择。<br><em>$@能够处理空格参数，而且参数间的空格也能正确的处理。</em><br><em>使用\$@时应该用双引号括起来，像”\$@”这样。</em></p>
+<h5 id="调试"><a href="#调试" class="headerlink" title="调试"></a>调试</h5><p>对脚本进行语法检查：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bash -n myscript.sh</div></pre></td></tr></table></figure>
+<p>跟踪脚本里每个命令的执行：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bash -v myscripts.sh</div></pre></td></tr></table></figure>
+<p>跟踪脚本里每个命令的执行并附加扩充信息：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bash -x myscript.sh</div></pre></td></tr></table></figure>
+<p>你可以在脚本头部使用set -o verbose和set -o xtrace来永久指定-v和-o。当在远程机器上执行脚本时，这样做非常有用，用它来输出远程信息。</p>
+<h5 id="什么时候不应该使用bash脚本"><a href="#什么时候不应该使用bash脚本" class="headerlink" title="什么时候不应该使用bash脚本"></a>什么时候不应该使用bash脚本</h5><ul>
+<li>你的脚本太长，多达几百行</li>
+<li>你需要比数组更复杂的数据结构</li>
+<li>出现了复杂的转义问题</li>
+<li>有太多的字符串操作</li>
+<li>不太需要调用其它程序和跟其它程序管道交互</li>
+<li>担心性能</li>
+<li>这个时候，你应该考虑一种脚本语言，比如Python或Ruby</li>
+</ul>
+<p><em>refer</em></p>
+<p><a href="http://tldp.org/LDP/abs/html/" target="_blank" rel="external">Advanced Bash-Scripting Guide</a>非常详细，非常易读，大量example，既可以当入门教材，也可以当做工具书查阅</p>
+<p><a href="http://www.tutorialspoint.com/unix/unix-shell.htm" target="_blank" rel="external">Unix Shell Programming</a></p>
+<p><a href="http://bash.cyberciti.biz/guide/Main_Page" target="_blank" rel="external">Linux Shell Scripting Tutorial - A Beginner’s handbook</a></p>
+<p><a href="http://www.davidpashley.com/articles/writing-robust-shell-scripts/" target="_blank" rel="external">set -u set -e 的原因</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>Donate comment here</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="Togal WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Togal Alipay"/>
+        <p>Alipay</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Togal
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://blog.togal.org/2017/11/20/shell备忘/" title="'shell备忘'">http://blog.togal.org/2017/11/20/shell备忘/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://www.gnu.org/licenses/gpl-3.0.en.html" rel="external nofollow" target="_blank">GPL</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/shell/" rel="tag"><i class="fa fa-tag"></i> shell</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/06/flume interceptor/" rel="next" title="flume interceptor">
+                <i class="fa fa-chevron-left"></i> flume interceptor
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+<span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_fav">收藏夹</a>
+<a class="jiathis_button_copy">复制网址</a>
+<a class="jiathis_button_email">邮件</a>
+<a class="jiathis_button_weixin">微信</a>
+<a class="jiathis_button_qzone">QQ空间</a>
+<a class="jiathis_button_tqq">腾讯微薄</a>
+<a class="jiathis_button_douban">豆瓣</a>
+<a class="jiathis_button_share">一键分享</a>
+
+<a href="http://www.jiathis.com/share?uid=2140465" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  shortUrl:false,
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="uyan_frame"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/favicon.ico"
+               alt="Togal" />
+          <p class="site-author-name" itemprop="name">Togal</p>
+           
+              <p class="site-description motion-element" itemprop="description">世间并无普世的成功定律，但却有普世的失败定律，你只要精通这些失败定律并尽量避免，那么，无疑就离自我成就更近一大步！</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives/">
+            
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/rss2.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Togal" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      Github
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.google.com/" title="Google" target="_blank">Google</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://scheme-lib.evilbinary.org/" title="Scheme-Web" target="_blank">Scheme-Web</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#string"><span class="nav-text">string</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#"><span class="nav-text">[  ]</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#if-elif-else-fi"><span class="nav-text">if elif else fi</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#for-while"><span class="nav-text">for while</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#case"><span class="nav-text">case</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#source"><span class="nav-text">source .</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#脚本安全"><span class="nav-text">脚本安全</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#检查机制的替换"><span class="nav-text">$? 检查机制的替换</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#变量注解"><span class="nav-text">变量注解</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#用-代替反单绰号"><span class="nav-text">用$()代替反单绰号(`)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#用-双层中括号替代"><span class="nav-text">用[[]]双层中括号替代[]</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#脚本函数"><span class="nav-text">脚本函数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#避免使用临时文件"><span class="nav-text">避免使用临时文件</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#here-documents"><span class="nav-text">here documents</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#内置变量"><span class="nav-text">内置变量</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#调试"><span class="nav-text">调试</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#什么时候不应该使用bash脚本"><span class="nav-text">什么时候不应该使用bash脚本</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+         <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Togal</span>
+
+  
+</div>
+
+
+  <!-- <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>  
+
+  <span class="post-meta-divider">|</span>-->
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">Hexo.NexT.Mist</a> v5.1.2</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+
+
+
+
+
+  
+  
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/three/three.min.js"></script>
+
+  
+  <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+
+  
+  <script type="text/javascript" src="/lib/three/canvas_sphere.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+
+    
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2142597"></script>
+      <!-- UY END -->
+    
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("CJ63iNuOaA8NUPGETVCAQygX-gzGzoHsz", "2fcMeVJSrs6zUHtAV0lMv98G");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/lib/zclip/clipboard.min.js"></script>	
+<script type="text/javascript" src="/js/src/custom.js"></script>
+</body>
+</html>
+<!-- ҳ������С���� -->
+<script type="text/javascript" src="/js/src/love.js"></script>

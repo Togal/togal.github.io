@@ -8,13 +8,214 @@
     <atom:link href="/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>世间并无普世的成功定律，但却有普世的失败定律，你只要精通这些失败定律并尽量避免，那么，无疑就离自我成就更近一大步！</description>
-    <pubDate>Mon, 06 Nov 2017 10:51:43 GMT</pubDate>
+    <pubDate>Mon, 20 Nov 2017 07:58:38 GMT</pubDate>
     <generator>http://hexo.io/</generator>
     
     <item>
+      <title>&#39;shell备忘&#39;</title>
+      <link>http://blog.togal.org/2017/11/20/shell%E5%A4%87%E5%BF%98/</link>
+      <guid>http://blog.togal.org/2017/11/20/shell%E5%A4%87%E5%BF%98/</guid>
+      <pubDate>Mon, 20 Nov 2017 03:08:12 GMT</pubDate>
+      <description>
+      
+        &lt;h5 id=&quot;string&quot;&gt;&lt;a href=&quot;#string&quot; class=&quot;headerlink&quot; title=&quot;string&quot;&gt;&lt;/a&gt;string&lt;/h5&gt;&lt;p&gt;字符串长度、切片&lt;/p&gt;
+&lt;figure class=&quot;highlight shell&quot;&gt;&lt;table&gt;&lt;t
+      
+      </description>
+      
+      <content:encoded><![CDATA[<h5 id="string"><a href="#string" class="headerlink" title="string"></a>string</h5><p>字符串长度、切片</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">f="path1/path2/file.ext"  </div><div class="line"></div><div class="line">len="$&#123;#f&#125;" # = 20 (字符串长度) </div><div class="line"></div><div class="line"><span class="meta">#</span><span class="bash"> 切片操作: <span class="variable">$&#123;&lt;var&gt;:&lt;start&gt;&#125;</span> or <span class="variable">$&#123;&lt;var&gt;:&lt;start&gt;:&lt;length&gt;&#125;</span></span></div><div class="line">slice1="$&#123;f:6&#125;" # = "path2/file.ext"</div><div class="line">slice2="$&#123;f:6:5&#125;" # = "path2"</div><div class="line">slice3="$&#123;f: -8&#125;" # = "file.ext"(注意："-"前有空格)</div><div class="line">pos=6</div><div class="line">len=5</div><div class="line">slice4="$&#123;f:$&#123;pos&#125;:$&#123;len&#125;&#125;" # = "path2"</div></pre></td></tr></table></figure>
+<p>查找子字符串,[更多参考][<a href="http://tldp.org/LDP/abs/html/string-manipulation.html" target="_blank" rel="external">http://tldp.org/LDP/abs/html/string-manipulation.html</a>]</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">string="alibaba is a great company"</div><div class="line">echo `expr index "$string" is`#输出：8，这个语句的意思是：找出单词is在这名话中的位置</div></pre></td></tr></table></figure>
+<p>替换操作</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">f="path1/path2/file.ext"  </div><div class="line"></div><div class="line">single_subst="$&#123;f/path?/x&#125;"   # = "x/path2/file.ext"</div><div class="line">global_subst="$&#123;f//path?/x&#125;"  # = "x/x/file.ext" </div><div class="line"></div><div class="line"><span class="meta">#</span><span class="bash"> 字符串拆分</span></div><div class="line">readonly DIR_SEP="/"</div><div class="line">array=($&#123;f//$&#123;DIR_SEP&#125;/ &#125;)</div><div class="line">second_dir="$&#123;arrray[1]&#125;"     # = path2</div></pre></td></tr></table></figure>
+<p>删除头部或尾部</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">f="path1/path2/file.ext" </div><div class="line"></div><div class="line"><span class="meta">#</span><span class="bash"> 删除字符串头部</span></div><div class="line">extension="$&#123;f#*.&#125;"  # = "ext" </div><div class="line"></div><div class="line"><span class="meta">#</span><span class="bash"> 以贪婪匹配方式删除字符串头部</span></div><div class="line">filename="$&#123;f##*/&#125;"  # = "file.ext" </div><div class="line"></div><div class="line"><span class="meta">#</span><span class="bash"> 删除字符串尾部</span></div><div class="line">dirname="$&#123;f%/*&#125;"    # = "path1/path2" </div><div class="line"></div><div class="line"><span class="meta">#</span><span class="bash"> 以贪婪匹配方式删除字符串尾部</span></div><div class="line">root="$&#123;f%%/*&#125;"      # = "path1"</div></pre></td></tr></table></figure>
+<hr>
+<h5 id=""><a href="#" class="headerlink" title="[  ]"></a>[  ]</h5><p>sh里的”[“、”]”，它是一个可执行程序,因此，方括号后面必须加空格</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">which</span> [</span></div><div class="line">/usr/bin/[</div></pre></td></tr></table></figure>
+<h5 id="if-elif-else-fi"><a href="#if-elif-else-fi" class="headerlink" title="if elif else fi"></a>if elif else fi</h5><p>sh的流程控制不可为空,如果else分支没有语句执行，就不要写这个else</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">if condition1</div><div class="line">then</div><div class="line">	command1</div><div class="line">elif condition2</div><div class="line">	command2</div><div class="line">else</div><div class="line">	commandN</div><div class="line">fi</div></pre></td></tr></table></figure>
+<h5 id="for-while"><a href="#for-while" class="headerlink" title="for while"></a>for while</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">for var in item1 item2 ... itemN</div><div class="line">do</div><div class="line">	command1</div><div class="line">	command2</div><div class="line">	...</div><div class="line">	commandN</div><div class="line">done</div></pre></td></tr></table></figure>
+<p>写成一行：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">for var in item1 item2 ... itemN; do command1; command2… done;</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">while condition</div><div class="line">do</div><div class="line">	command</div><div class="line">done</div></pre></td></tr></table></figure>
+<p>无限循环：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">while true</div><div class="line">do</div><div class="line">	command</div><div class="line">done</div></pre></td></tr></table></figure>
+<h5 id="case"><a href="#case" class="headerlink" title="case"></a>case</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">case "$&#123;opt&#125;" in</div><div class="line">	"Install-Puppet-Server" )</div><div class="line">		install_master $1</div><div class="line">		exit</div><div class="line">	;;</div><div class="line"></div><div class="line">	"Install-Puppet-Client" )</div><div class="line">		install_client $1</div><div class="line">		exit</div><div class="line">	;;</div><div class="line"></div><div class="line">	"Config-Puppet-Server" )</div><div class="line">		config_puppet_master</div><div class="line">		exit</div><div class="line">	;;</div><div class="line"></div><div class="line">	"Config-Puppet-Client" )</div><div class="line">		config_puppet_client</div><div class="line">		exit</div><div class="line">	;;</div><div class="line"></div><div class="line">	"Exit" )</div><div class="line">		exit</div><div class="line">	;;</div><div class="line"></div><div class="line">	* ) echo "Bad option, please choose again"</div><div class="line">esac</div></pre></td></tr></table></figure>
+<h5 id="source"><a href="#source" class="headerlink" title="source ."></a>source .</h5><p>在bash里，source和.是等效的,包含、读入其他文件的内容</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">source ./function.sh</div><div class="line">. ./function.sh</div></pre></td></tr></table></figure>
+<p>如果function.sh是用户传入的参数，如何获得它的绝对路径呢？方法是</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash"><span class="variable">$1</span>是用户输入的参数，如function.sh</span></div><div class="line">real_path=`readlink -f $1`</div><div class="line">. $real_path</div></pre></td></tr></table></figure>
+<h5 id="脚本安全"><a href="#脚本安全" class="headerlink" title="脚本安全"></a>脚本安全</h5><p>以下面几句开始:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></div><div class="line">set -o nounset</div><div class="line">set -o errexit</div></pre></td></tr></table></figure>
+<p>这样做会避免两种常见的问题：</p>
+<ol>
+<li>引用未定义的变量(缺省值为“”)</li>
+<li>执行失败的命令被忽略</li>
+</ol>
+<h5 id="检查机制的替换"><a href="#检查机制的替换" class="headerlink" title="$? 检查机制的替换"></a>$? 检查机制的替换</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">if [ "$?"-ne 0]; then echo "command failed"; exit 1; fi</div></pre></td></tr></table></figure>
+<p>replace with</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">command || &#123; echo "command failed"; exit 1; &#125;</div></pre></td></tr></table></figure>
+<p>or</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">if ! command; then echo "command failed"; exit 1; fi</div></pre></td></tr></table></figure>
+<h5 id="变量注解"><a href="#变量注解" class="headerlink" title="变量注解"></a>变量注解</h5><p>Bash里可以对变量进行有限的注解。最重要的两个注解是：</p>
+<ol>
+<li>local(函数内部变量)</li>
+</ol>
+<ol>
+<li>readonly(只读变量)</li>
+</ol>
+<h5 id="用-代替反单绰号"><a href="#用-代替反单绰号" class="headerlink" title="用$()代替反单绰号(`)"></a>用$()代替反单绰号(`)</h5><p>$()能够内嵌使用，而且避免了转义符的麻烦</p>
+<h5 id="用-双层中括号替代"><a href="#用-双层中括号替代" class="headerlink" title="用[[]]双层中括号替代[]"></a>用[[]]双层中括号替代[]</h5><table>
+<thead>
+<tr>
+<th>操作符</th>
+<th>功能说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>\</td>
+<td>\</td>
+<td></td>
+<td>逻辑or(仅双中括号里使用)</td>
+</tr>
+<tr>
+<td>&amp;&amp;</td>
+<td>逻辑and(仅双中括号里使用)</td>
+</tr>
+<tr>
+<td>&lt;</td>
+<td>字符串比较(双中括号里不需要转移)</td>
+</tr>
+<tr>
+<td>-lt</td>
+<td>数字比较</td>
+</tr>
+<tr>
+<td>=</td>
+<td>字符串相等</td>
+</tr>
+<tr>
+<td>==</td>
+<td>以Globbing方式进行字符串比较(仅双中括号里使用，参考下文)</td>
+</tr>
+<tr>
+<td>=~</td>
+<td>用正则表达式进行字符串比较(仅双中括号里使用，参考下文)</td>
+</tr>
+<tr>
+<td>-n</td>
+<td>非空字符串</td>
+</tr>
+<tr>
+<td>-z</td>
+<td>空字符串</td>
+</tr>
+<tr>
+<td>-eq</td>
+<td>数字相等</td>
+</tr>
+<tr>
+<td>-ne</td>
+<td>数字不等</td>
+</tr>
+</tbody>
+</table>
+<p>单中括号</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[ "$&#123;name&#125;" \&gt; "a" -o $&#123;name&#125; \&lt; "m" ]</div></pre></td></tr></table></figure>
+<p>双中括号</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[[ "$&#123;name&#125;" &gt; "a" &amp;&amp; "$&#123;name&#125;" &lt; "m"  ]]</div></pre></td></tr></table></figure>
+<p>正则表达式/Globbing</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">t="abc123"</div><div class="line">[[ "$t" == abc* ]]         # true (globbing比较)</div><div class="line">[[ "$t" == "abc*" ]]       # false (字面比较)</div><div class="line">[[ "$t" =~ [abc]+[123]+ ]] # true (正则表达式比较)</div><div class="line">[[ "$t" =~ "abc*" ]]       # false (字面比较)</div></pre></td></tr></table></figure>
+<h5 id="脚本函数"><a href="#脚本函数" class="headerlink" title="脚本函数"></a>脚本函数</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">ExtractBashComments() &#123;</div><div class="line">        egrep "^#"</div><div class="line">    &#125; </div><div class="line"></div><div class="line">    cat myscript.sh | ExtractBashComments | wc </div><div class="line"></div><div class="line">    comments=$(ExtractBashComments &lt; myscript.sh)</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">SumLines() &#123;  # iterating over stdin - similar to awk      </div><div class="line">        local sum=0</div><div class="line">        local line=””</div><div class="line">        while read line ; do</div><div class="line">            sum=$(($&#123;sum&#125; + $&#123;line&#125;))</div><div class="line">        done</div><div class="line">        echo $&#123;sum&#125;</div><div class="line">    &#125; </div><div class="line"></div><div class="line">    SumLines &lt; data_one_number_per_line.txt </div><div class="line"></div><div class="line">    log() &#123;  # classic logger</div><div class="line">       local prefix="[$(date +%Y/%m/%d\ %H:%M:%S)]: "</div><div class="line">       echo "$&#123;prefix&#125; $@" &gt;&amp;2</div><div class="line">    &#125; </div><div class="line"></div><div class="line">    log "INFO" "a message"</div></pre></td></tr></table></figure>
+<h5 id="避免使用临时文件"><a href="#避免使用临时文件" class="headerlink" title="避免使用临时文件"></a>避免使用临时文件</h5><p>有些命令需要以文件名为参数，这样一来就不能使用管道。这个时候 &lt;() 就显出用处了，它可以接受一个命令，并把它转换成可以当成文件名之类的什么东西</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash"> 下载并比较两个网页</span></div><div class="line">diff &lt;(wget -O - url1) &lt;(wget -O - url2)</div></pre></td></tr></table></figure>
+<h6 id="here-documents"><a href="#here-documents" class="headerlink" title="here documents"></a>here documents</h6><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash"> 任何字词都可以当作分界符</span></div><div class="line">cmd &lt;&lt; delimiter</div><div class="line">  Here Document Content</div><div class="line">delimiter</div><div class="line"></div><div class="line"><span class="meta">#</span><span class="bash"> 作为结尾的delimiter一定要顶格写,前面不能有任何字符;</span></div><div class="line"><span class="meta">#</span><span class="bash"> 作为结尾的delimiter后面也不能有任何的字符(包括空格!!!);</span></div><div class="line"><span class="meta">#</span><span class="bash"> 作为起始的delimiter前后的空格会被省略掉</span></div></pre></td></tr></table></figure>
+<p>在标准输入上输入多行字符串</p>
+<p>Here Document 不仅可以在终端上使用，在shell 文件中也可以使用，例如下面的here.sh 文件</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">cat &lt;&lt; EOF &gt; output.sh</div><div class="line"><span class="built_in">echo</span> <span class="string">"This is output"</span></div><div class="line"><span class="built_in">echo</span> <span class="variable">$1</span></div><div class="line">EOF</div></pre></td></tr></table></figure>
+<p>使用 sh here.sh HereDocument运行这个脚本文件,会得到output.txt 这个新文件,其内容如下:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">echo "hello"</div><div class="line">echo "HereDocument"</div></pre></td></tr></table></figure>
+<p>如果不想展开这个变量怎么办呢，可以通过在起始的 delimiter的前后添加 “ 来实现,例如将上面的here.sh 改为</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">cat &lt;&lt; "EOF" &gt; output.sh  #注意引号</div><div class="line">echo "This is output"</div><div class="line">echo $1</div><div class="line">EOF</div></pre></td></tr></table></figure>
+<p>得到的output.sh 的内容为</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">echo "This is output"</div><div class="line">echo $1</div></pre></td></tr></table></figure>
+<h5 id="内置变量"><a href="#内置变量" class="headerlink" title="内置变量"></a>内置变量</h5><table>
+<thead>
+<tr>
+<th>变量</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$0</td>
+<td>脚本名称</td>
+</tr>
+<tr>
+<td>$n</td>
+<td>传给脚本/函数的第n个参数</td>
+</tr>
+<tr>
+<td>$$</td>
+<td>脚本的PID</td>
+</tr>
+<tr>
+<td>$!</td>
+<td>上一个被执行的命令的PID(后台运行的进程)</td>
+</tr>
+<tr>
+<td>$?</td>
+<td>上一个命令的退出状态(管道命令使用${PIPESTATUS})</td>
+</tr>
+<tr>
+<td>$#</td>
+<td>传递给脚本/函数的参数个数</td>
+</tr>
+<tr>
+<td>$@</td>
+<td>传递给脚本/函数的所有参数(识别每个参数)</td>
+</tr>
+<tr>
+<td>$*</td>
+<td>传递给脚本/函数的所有参数(把所有参数当成一个字符串)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>提示</strong>:<br><em>使用$</em>很少是正确的选择。<br><em>$@能够处理空格参数，而且参数间的空格也能正确的处理。</em><br><em>使用\$@时应该用双引号括起来，像”\$@”这样。</em></p>
+<h5 id="调试"><a href="#调试" class="headerlink" title="调试"></a>调试</h5><p>对脚本进行语法检查：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bash -n myscript.sh</div></pre></td></tr></table></figure>
+<p>跟踪脚本里每个命令的执行：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bash -v myscripts.sh</div></pre></td></tr></table></figure>
+<p>跟踪脚本里每个命令的执行并附加扩充信息：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bash -x myscript.sh</div></pre></td></tr></table></figure>
+<p>你可以在脚本头部使用set -o verbose和set -o xtrace来永久指定-v和-o。当在远程机器上执行脚本时，这样做非常有用，用它来输出远程信息。</p>
+<h5 id="什么时候不应该使用bash脚本"><a href="#什么时候不应该使用bash脚本" class="headerlink" title="什么时候不应该使用bash脚本"></a>什么时候不应该使用bash脚本</h5><ul>
+<li>你的脚本太长，多达几百行</li>
+<li>你需要比数组更复杂的数据结构</li>
+<li>出现了复杂的转义问题</li>
+<li>有太多的字符串操作</li>
+<li>不太需要调用其它程序和跟其它程序管道交互</li>
+<li>担心性能</li>
+<li>这个时候，你应该考虑一种脚本语言，比如Python或Ruby</li>
+</ul>
+<p><em>refer</em></p>
+<p><a href="http://tldp.org/LDP/abs/html/" target="_blank" rel="external">Advanced Bash-Scripting Guide</a>非常详细，非常易读，大量example，既可以当入门教材，也可以当做工具书查阅</p>
+<p><a href="http://www.tutorialspoint.com/unix/unix-shell.htm" target="_blank" rel="external">Unix Shell Programming</a></p>
+<p><a href="http://bash.cyberciti.biz/guide/Main_Page" target="_blank" rel="external">Linux Shell Scripting Tutorial - A Beginner’s handbook</a></p>
+<p><a href="http://www.davidpashley.com/articles/writing-robust-shell-scripts/" target="_blank" rel="external">set -u set -e 的原因</a></p>
+]]></content:encoded>
+      
+      <comments>http://blog.togal.org/2017/11/20/shell%E5%A4%87%E5%BF%98/#disqus_thread</comments>
+    </item>
+    
+    <item>
       <title>flume interceptor</title>
-      <link>http://blog.togal.org/2017/11/06/flume%E5%90%84%E7%A7%8Ddemo/</link>
-      <guid>http://blog.togal.org/2017/11/06/flume%E5%90%84%E7%A7%8Ddemo/</guid>
+      <link>http://blog.togal.org/2017/11/06/flume%20interceptor/</link>
+      <guid>http://blog.togal.org/2017/11/06/flume%20interceptor/</guid>
       <pubDate>Mon, 06 Nov 2017 09:38:20 GMT</pubDate>
       <description>
       
@@ -57,7 +258,7 @@
 <p><img src="http://owcr8i5la.bkt.clouddn.com/201711061831_972.png" alt=""></p>
 ]]></content:encoded>
       
-      <comments>http://blog.togal.org/2017/11/06/flume%E5%90%84%E7%A7%8Ddemo/#disqus_thread</comments>
+      <comments>http://blog.togal.org/2017/11/06/flume%20interceptor/#disqus_thread</comments>
     </item>
     
     <item>
@@ -150,31 +351,6 @@
 <h5 id="Since-15th-March-2014-this-cookie-is-provided-to-the-user-after-accepting-the-License-Agreementand-is-necessary-for-accessing-the-Java-packages-in-download-oracle-com-The-previous-and-first-implementation-in-27th-March-2012-made-use-of-the-cookie-gpw-e24-http-3A-2F-2Fwww-oracle-com-…-Both-cases-remain-unannounced-to-the-public"><a href="#Since-15th-March-2014-this-cookie-is-provided-to-the-user-after-accepting-the-License-Agreementand-is-necessary-for-accessing-the-Java-packages-in-download-oracle-com-The-previous-and-first-implementation-in-27th-March-2012-made-use-of-the-cookie-gpw-e24-http-3A-2F-2Fwww-oracle-com-…-Both-cases-remain-unannounced-to-the-public" class="headerlink" title="Since 15th March 2014 this cookie is provided to the user after accepting the License Agreementand is necessary for accessing the Java packages in download.oracle.com. The previous (and first) implementation in 27th March 2012 made use of the cookie gpw_e24=http%3A%2F%2Fwww.oracle.com[…]. Both cases remain unannounced to the public."></a>Since 15th March 2014 this cookie is provided to the user after accepting the License Agreementand is necessary for accessing the Java packages in download.oracle.com. The previous (and first) implementation in 27th March 2012 made use of the cookie gpw_e24=http%3A%2F%2Fwww.oracle.com[…]. Both cases remain unannounced to the public.</h5><h5 id="The-value-doesn’t-have-to-be-“accept-securebackup-cookie“"><a href="#The-value-doesn’t-have-to-be-“accept-securebackup-cookie“" class="headerlink" title="The value doesn’t have to be “accept-securebackup-cookie“."></a>The value doesn’t have to be “accept-securebackup-cookie“.</h5>]]></content:encoded>
       
       <comments>http://blog.togal.org/2017/10/31/Linux%E4%B8%8B%E4%BD%BF%E7%94%A8wget%E4%BB%8E%E5%AE%98%E7%BD%91%E4%B8%8A%E4%B8%8B%E8%BD%BDOracle-JDK/#disqus_thread</comments>
-    </item>
-    
-    <item>
-      <title>Hello Hexo</title>
-      <link>http://blog.togal.org/2017/10/24/hello-world/</link>
-      <guid>http://blog.togal.org/2017/10/24/hello-world/</guid>
-      <pubDate>Tue, 24 Oct 2017 10:55:13 GMT</pubDate>
-      <description>
-      
-        &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
-      
-      </description>
-      
-      <content:encoded><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-]]></content:encoded>
-      
-      <comments>http://blog.togal.org/2017/10/24/hello-world/#disqus_thread</comments>
     </item>
     
     <item>
