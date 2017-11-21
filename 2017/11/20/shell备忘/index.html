@@ -19,7 +19,7 @@
     
     
   <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
-  <link href="/lib/pace/pace-theme-loading-bar.min.css?v=1.0.2" rel="stylesheet">
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
 
 
 
@@ -130,7 +130,7 @@
 <meta property="og:site_name" content="Togal">
 <meta property="og:description" content="string字符串长度、切片 1234567891011f=&quot;path1/path2/file.ext&quot;  len=&quot;$&amp;#123;#f&amp;#125;&quot; # = 20 (字符串长度) # 切片操作: $&amp;#123;&amp;lt;var&amp;gt;:&amp;lt;start&amp;gt;&amp;#125; or $&amp;#123;&amp;lt;var&amp;gt;:&amp;lt;start&amp;gt;:&amp;lt;length&amp;gt;&amp;#125;slice1">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-20T11:17:24.258Z">
+<meta property="og:updated_time" content="2017-11-20T11:33:10.649Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="shell学习备忘">
 <meta name="twitter:description" content="string字符串长度、切片 1234567891011f=&quot;path1/path2/file.ext&quot;  len=&quot;$&amp;#123;#f&amp;#125;&quot; # = 20 (字符串长度) # 切片操作: $&amp;#123;&amp;lt;var&amp;gt;:&amp;lt;start&amp;gt;&amp;#125; or $&amp;#123;&amp;lt;var&amp;gt;:&amp;lt;start&amp;gt;:&amp;lt;length&amp;gt;&amp;#125;slice1">
@@ -388,7 +388,7 @@
       
         <h5 id="string"><a href="#string" class="headerlink" title="string"></a>string</h5><p>字符串长度、切片</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">f="path1/path2/file.ext"  </div><div class="line"></div><div class="line">len="$&#123;#f&#125;" # = 20 (字符串长度) </div><div class="line"></div><div class="line"><span class="meta">#</span><span class="bash"> 切片操作: <span class="variable">$&#123;&lt;var&gt;:&lt;start&gt;&#125;</span> or <span class="variable">$&#123;&lt;var&gt;:&lt;start&gt;:&lt;length&gt;&#125;</span></span></div><div class="line">slice1="$&#123;f:6&#125;" # = "path2/file.ext"</div><div class="line">slice2="$&#123;f:6:5&#125;" # = "path2"</div><div class="line">slice3="$&#123;f: -8&#125;" # = "file.ext"(注意："-"前有空格)</div><div class="line">pos=6</div><div class="line">len=5</div><div class="line">slice4="$&#123;f:$&#123;pos&#125;:$&#123;len&#125;&#125;" # = "path2"</div></pre></td></tr></table></figure>
-<p>查找子字符串,[更多参考][<a href="http://tldp.org/LDP/abs/html/string-manipulation.html" target="_blank" rel="external">http://tldp.org/LDP/abs/html/string-manipulation.html</a>]</p>
+<p>查找子字符串,<a href="http://tldp.org/LDP/abs/html/string-manipulation.html" target="_blank" rel="external">更多参考</a></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">string="alibaba is a great company"</div><div class="line">echo `expr index "$string" is`#输出：8，这个语句的意思是：找出单词is在这名话中的位置</div></pre></td></tr></table></figure>
 <p>替换操作</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">f="path1/path2/file.ext"  </div><div class="line"></div><div class="line">single_subst="$&#123;f/path?/x&#125;"   # = "x/path2/file.ext"</div><div class="line">global_subst="$&#123;f//path?/x&#125;"  # = "x/x/file.ext" </div><div class="line"></div><div class="line"><span class="meta">#</span><span class="bash"> 字符串拆分</span></div><div class="line">readonly DIR_SEP="/"</div><div class="line">array=($&#123;f//$&#123;DIR_SEP&#125;/ &#125;)</div><div class="line">second_dir="$&#123;arrray[1]&#125;"     # = path2</div></pre></td></tr></table></figure>
@@ -942,9 +942,6 @@ var jiathis_config={
 
 
 
-  
-  
-
 
 
 
@@ -976,9 +973,6 @@ var jiathis_config={
 
   
   <script type="text/javascript" src="/lib/three/three.min.js"></script>
-
-  
-  <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
 
   
   <script type="text/javascript" src="/lib/three/canvas_sphere.min.js"></script>
